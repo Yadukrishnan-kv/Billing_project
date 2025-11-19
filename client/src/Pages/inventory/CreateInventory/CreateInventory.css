@@ -1,0 +1,340 @@
+.createinventory-container {
+  width: 90%;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Mono', sans-serif;
+}
+
+.createinventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.createinventory-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.createinventory-btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--neutral-100);
+  color: var(--neutral-700);
+  border: 1.5px solid var(--neutral-200);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.createinventory-btn-back:hover {
+  background-color: var(--neutral-200);
+  border-color: var(--neutral-300);
+  transform: translateY(-1px);
+}
+
+.createinventory-error-message {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: var(--error-color);
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--error-color);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.createinventory-form {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  padding: 40px;
+  width: 1200px;
+  max-width: 1200px;
+  flex: 0 0 1200px;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-200);
+  transition: var(--transition);
+}
+
+.createinventory-form:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.createinventory-row {
+  display: grid;
+  grid-template-columns: repeat(2, 3fr);
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.createinventory-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.createinventory-group input,
+.createinventory-group select,
+.createinventory-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--neutral-200);
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: var(--neutral-50);
+  color: var(--neutral-900);
+  transition: var(--transition);
+  height: 44px;
+}
+
+.createinventory-group textarea {
+  height: auto;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.createinventory-group input:focus,
+.createinventory-group select:focus,
+.createinventory-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  background-color: white;
+}
+
+.createinventory-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--neutral-700);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.createinventory-required {
+  color: var(--error-color);
+  margin-left: 3px;
+}
+
+.createinventory-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 36px 0 16px 0;
+  padding-top: 24px;
+  border-top: 2px solid var(--neutral-200);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.createinventory-btn-add-item {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.createinventory-btn-add-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.createinventory-items-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 28px;
+  border: 1px solid var(--neutral-200);
+  border-radius: 8px;
+  background: var(--neutral-50);
+}
+
+.createinventory-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.createinventory-items-table th {
+  background: var(--neutral-100);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--neutral-700);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1.5px solid var(--neutral-200);
+}
+
+.createinventory-items-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.createinventory-items-table input,
+.createinventory-items-table select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--neutral-300);
+  border-radius: 6px;
+  font-size: 13px;
+  background: white;
+}
+
+.createinventory-items-table input:focus,
+.createinventory-items-table select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.createinventory-btn-remove-item {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error-color);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.createinventory-btn-remove-item:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: scale(1.05);
+}
+
+.createinventory-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 36px;
+  justify-content: flex-start;
+  padding-top: 24px;
+  border-top: 1px solid var(--neutral-200);
+}
+
+.createinventory-btn-save,
+.createinventory-btn-cancel {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.createinventory-btn-save {
+  background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.createinventory-btn-save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4);
+}
+
+.createinventory-btn-cancel {
+  background-color: var(--neutral-100);
+  color: var(--neutral-700);
+  border: 1.5px solid var(--neutral-200);
+}
+
+.createinventory-btn-cancel:hover {
+  background-color: var(--neutral-200);
+  border-color: var(--neutral-300);
+}
+
+.createinventory-loading {
+  text-align: center;
+  padding: 60px 40px;
+  color: var(--neutral-600);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+  .createinventory-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .createinventory-container { padding: 20px 12px; }
+  .createinventory-header { flex-direction: column; align-items: stretch; }
+  .createinventory-form { padding: 24px; }
+  .createinventory-actions { flex-direction: column; }
+  .createinventory-btn-save, .createinventory-btn-cancel { width: 100%; }
+}
+/* Add these new styles at the bottom of your existing CreateInventory.css */
+
+.createinventory-dynamic-section {
+  position: relative;
+  background: rgba(59, 130, 246, 0.02);
+  border: 1px dashed rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.createinventory-dynamic-section:hover {
+  background: rgba(59, 130, 246, 0.04);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.createinventory-btn-remove-section {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--error-color);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.createinventory-btn-remove-section:hover {
+  background: rgba(239, 68, 68, 0.25);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustment for remove button on small screens */
+@media (max-width: 768px) {
+  .createinventory-btn-remove-section {
+    position: static;
+    margin-top: 12px;
+    align-self: flex-end;
+  }
+  .createinventory-dynamic-section {
+    padding: 16px;
+  }
+}

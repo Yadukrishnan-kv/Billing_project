@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f4f6f9; }
+
+.header {
+  height:60px; background:#fff; display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; box-shadow:0 2px 6px rgba(0,0,0,.08); position:sticky; top:0; z-index:1000;
+}
+.header .logo img { height:38px; }
+.header .create-btn {
+  background:#007bff; color:white; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;
+}
+.header .right { display:flex; align-items:center; gap:16px; font-size:0.9rem; }
+.header .right a { color:#555; text-decoration:none; }
+.header .bell { cursor:pointer; font-size:1.2rem; color:#555; }
+
+.sidebar {
+  width:250px; background:#2c3e50; color:#ecf0f1; position:fixed; top:0; left:0; height:100vh;
+  transition:width .3s; overflow:hidden; z-index:999;
+}
+.sidebar.collapsed { width:70px; }
+.sidebar .logo-area { padding:16px; text-align:center; position:relative; }
+.sidebar .logo-area img { height:34px; }
+.sidebar .toggle-btn {
+  position:absolute; right:8px; top:18px; background:none; border:none; color:#fff; cursor:pointer;
+}
+.sidebar .menu-item {
+  display:flex; align-items:center; padding:12px 20px; color:#bdc3c7; cursor:pointer;
+  transition:.2s;
+}
+.sidebar .menu-item:hover { background:#34495e; }
+.sidebar .menu-item.active { background:#3498db; color:white; }
+.sidebar .menu-item .icon { font-size:1.2rem; margin-right:12px; }
+.sidebar .menu-item .label { white-space:nowrap; }
+
+.content {
+  margin-left:250px; padding:30px; transition:margin-left .3s;
+}
+.content.collapsed { margin-left:70px; }
+
+.dropdown {
+  position:relative; cursor:pointer;
+}
+.dropdown button {
+  background:none; border:none; display:flex; align-items:center; gap:8px; font-weight:500;
+}
+.dropdown .menu {
+  position:absolute; right:0; top:100%; background:white; min-width:180px;
+  box-shadow:0 4px 12px rgba(0,0,0,.15); border-radius:6px; overflow:hidden; display:none;
+}
+.dropdown.open .menu { display:block; }
+.dropdown .menu a {
+  display:block; padding:10px 16px; color:#333; text-decoration:none; font-size:0.95rem;
+}
+.dropdown .menu a:hover { background:#f8f9fa; }

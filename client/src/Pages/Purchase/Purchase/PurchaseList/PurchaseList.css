@@ -1,0 +1,541 @@
+.purchaseList-wrapper {
+  padding: 30px 20px;
+  padding-top: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.purchaseList-viewTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.purchaseList-viewTab {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.purchaseList-viewTab-active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.purchaseList-headerContainer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px 16px 0 0;
+  padding: 32px 28px;
+  margin-bottom: 0;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+}
+
+.purchaseList-headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.purchaseList-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.purchaseList-toolbarSection {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  padding: 20px 28px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.purchaseList-toolbarButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.purchaseList-dropdownWrapper {
+  position: relative;
+}
+
+.purchaseList-btnToolbar {
+  background: white;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.purchaseList-btnToolbar:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.purchaseList-dropdownIcon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.purchaseList-btnToolbar:hover .purchaseList-dropdownIcon {
+  transform: rotate(180deg);
+}
+
+.purchaseList-icon {
+  font-size: 16px;
+}
+
+.purchaseList-dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 200px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.purchaseList-dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: white;
+  color: #374151;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.purchaseList-dropdownItem:hover {
+  background: #f3f4f6;
+  color: #667eea;
+  padding-left: 20px;
+}
+
+.purchaseList-btnCreate {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  margin-left: auto;
+}
+
+.purchaseList-btnCreate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.purchaseList-searchExportSection {
+  background: white;
+  padding: 18px 28px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.purchaseList-searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  max-width: 500px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  overflow: hidden;
+}
+
+.purchaseList-searchFieldSelect {
+  background: #f3f4f6;
+  border: none;
+  border-right: 1px solid #d1d5db;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  min-width: 90px;
+  outline: none;
+}
+
+.purchaseList-searchInput {
+  flex: 1;
+  border: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #374151;
+  outline: none;
+}
+
+.purchaseList-searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.purchaseList-btnExport {
+  background: white;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.purchaseList-btnExport:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.purchaseList-exportIcon {
+  font-size: 16px;
+}
+
+.purchaseList-tableContainer {
+  background: #ffffff;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  border-top: none;
+}
+
+.purchaseList-errorMessage {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #7f1d1d;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid #dc2626;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.purchaseList-loading {
+  text-align: center;
+  padding: 48px 40px;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 500;
+  background: #f9fafb;
+}
+
+.purchaseList-tableWrapper {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.purchaseList-tableWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.purchaseList-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  min-width: 1200px;
+}
+
+.purchaseList-table thead {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-bottom: 2px solid #d1d5db;
+}
+
+.purchaseList-table th {
+  padding: 20px 18px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 800;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+.purchaseList-sortableHeader {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.purchaseList-sortableHeader:hover {
+  background: linear-gradient(135deg, #f3f4f6 0%, #ececf1 100%);
+}
+
+.purchaseList-sortIcon {
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.purchaseList-table tbody tr {
+  border-bottom: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.purchaseList-row {
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 8px;
+}
+
+.purchaseList-table tbody tr:hover {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
+  box-shadow: inset 0 0 8px rgba(102, 126, 234, 0.08);
+}
+
+.purchaseList-table td {
+  padding: 18px;
+  margin: 0 6px;
+  font-size: 14px;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.purchaseList-table th {
+  margin: 0 6px;
+}
+
+.purchaseList-idCell {
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.purchaseList-titleCell {
+  font-weight: 700;
+  color: #111827;
+  font-size: 15px;
+}
+
+.purchaseList-customerCell {
+  font-weight: 600;
+  color: #374151;
+}
+
+.purchaseList-statusCell {
+  font-weight: 700;
+  padding: 6px 12px !important;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+  font-size: 12px;
+}
+
+.purchaseList-status-draft {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.purchaseList-status-published {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.purchaseList-status-paid {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.purchaseList-status-cancelled {
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+
+.purchaseList-totalCell {
+  font-weight: 800;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.purchaseList-actionsCell {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  position: sticky;
+  right: 0;
+  background: white;
+  padding: 18px;
+  z-index: 100;
+}
+
+.purchaseList-table tbody tr:hover .purchaseList-actionsCell {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
+}
+
+.purchaseList-btnAction {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.purchaseList-btnAction:hover {
+  transform: scale(1.18);
+}
+
+.purchaseList-btnView {
+  color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.12);
+}
+
+.purchaseList-btnView:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(102, 126, 234, 0.15) 100%);
+}
+
+.purchaseList-btnEdit {
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.12);
+}
+
+.purchaseList-btnEdit:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(251, 146, 60, 0.15) 100%);
+}
+
+.purchaseList-btnDelete {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.12);
+}
+
+.purchaseList-btnDelete:hover {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(244, 114, 114, 0.15) 100%);
+}
+
+.purchaseList-noData {
+  text-align: center;
+  padding: 56px 20px !important;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.purchaseList-paginationContainer {
+  background: #f9fafb;
+  border-top: 2px solid #e5e7eb;
+  padding: 20px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.purchaseList-paginationInfo {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.purchaseList-paginationButtons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.purchaseList-btnPagination {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+
+.purchaseList-btnPagination:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.purchaseList-btnPagination:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.purchaseList-paginationCounter {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 700;
+  min-width: 100px;
+  text-align: center;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}

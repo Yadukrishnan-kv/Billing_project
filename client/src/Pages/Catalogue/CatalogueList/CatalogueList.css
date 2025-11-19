@@ -1,0 +1,465 @@
+/* CatalogueList.css - FINAL VERSION WITH PERFECT ALIGNMENT */
+.cataloguelist-wrapper {
+  padding: 30px 20px;
+  padding-top: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.cataloguelist-viewTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.cataloguelist-viewTab {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.cataloguelist-viewTab-active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.cataloguelist-headerContainer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px 16px 0 0;
+  padding: 32px 28px;
+  margin-bottom: 0;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+}
+
+.cataloguelist-headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.cataloguelist-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cataloguelist-toolbarSection {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  padding: 20px 28px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cataloguelist-toolbarButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cataloguelist-dropdownWrapper {
+  position: relative;
+}
+
+.cataloguelist-btnToolbar {
+  background: white;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.cataloguelist-btnToolbar:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.cataloguelist-dropdownIcon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.cataloguelist-btnToolbar:hover .cataloguelist-dropdownIcon {
+  transform: rotate(180deg);
+}
+
+.cataloguelist-icon {
+  font-size: 16px;
+}
+
+.cataloguelist-dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 200px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.cataloguelist-dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: white;
+  color: #374151;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cataloguelist-dropdownItem:hover {
+  background: #f3f4f6;
+  color: #667eea;
+  padding-left: 20px;
+}
+
+.cataloguelist-btnCreate {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.cataloguelist-btnCreate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.cataloguelist-searchExportSection {
+  background: white;
+  padding: 18px 28px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cataloguelist-searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  max-width: 500px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  overflow: hidden;
+}
+
+.cataloguelist-searchFieldSelect {
+  background: #f3f4f6;
+  border: none;
+  border-right: 1px solid #d1d5db;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  min-width: 90px;
+  outline: none;
+}
+
+.cataloguelist-searchInput {
+  flex: 1;
+  border: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #374151;
+  outline: none;
+}
+
+.cataloguelist-searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.cataloguelist-btnExport {
+  background: white;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.cataloguelist-btnExport:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.cataloguelist-exportIcon {
+  font-size: 16px;
+}
+
+.cataloguelist-tableContainer {
+  background: #ffffff;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  border-top: none;
+}
+
+.cataloguelist-errorMessage {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #7f1d1d;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin: 20px;
+  border-left: 5px solid #dc2626;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cataloguelist-loading {
+  text-align: center;
+  padding: 48px 40px;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 500;
+  background: #f9fafb;
+}
+
+.cataloguelist-tableWrapper {
+  overflow-x: auto;
+}
+
+/* ==================== TABLE WITH PERFECT ALIGNMENT ==================== */
+.cataloguelist-table {
+  width: 100%;
+  table-layout: fixed;           /* Forces columns to respect widths */
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  min-width: 700px;
+}
+
+.cataloguelist-table thead {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-bottom: 2px solid #d1d5db;
+}
+
+.cataloguelist-table th {
+  padding: 18px 20px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+/* Column 1: Name - 55% */
+.cataloguelist-table th:nth-child(1),
+.cataloguelist-table td:nth-child(1) {
+  width: 55%;
+  padding-left: 24px;
+  text-align: left;
+}
+
+/* Column 2: Module - 25% */
+.cataloguelist-table th:nth-child(2),
+.cataloguelist-table td:nth-child(2) {
+  width: 25%;
+  padding-left: 24px;
+  text-align: left;
+}
+
+/* Column 3: Actions - 20% + Centered */
+.cataloguelist-table th:nth-child(3),
+.cataloguelist-table td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+
+.cataloguelist-sortableHeader {
+  cursor: pointer;
+  user-select: none;
+}
+
+.cataloguelist-sortableHeader:hover {
+  background: #ececf1;
+}
+
+.cataloguelist-sortIcon {
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.cataloguelist-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+.cataloguelist-table tbody tr:hover {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f5f3ff 100%);
+}
+
+.cataloguelist-table td {
+  padding: 18px 20px;
+  font-size: 14.5px;
+  color: #1f2937;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.cataloguelist-titleCell {
+  font-weight: 700;
+  color: #111827;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 24px !important;
+}
+
+.cataloguelist-actionsCell {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px !important;
+}
+
+.cataloguelist-table tbody tr:hover .cataloguelist-actionsCell {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f5f3ff 100%);
+}
+
+.cataloguelist-btnAction {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 9px 13px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cataloguelist-btnAction:hover {
+  transform: scale(1.2);
+}
+
+.cataloguelist-btnEdit {
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.12);
+}
+
+.cataloguelist-btnEdit:hover {
+  background: rgba(245, 158, 11, 0.25);
+}
+
+.cataloguelist-btnDelete {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.12);
+}
+
+.cataloguelist-btnDelete:hover {
+  background: rgba(239, 68, 68, 0.25);
+}
+
+.cataloguelist-noData {
+  text-align: center;
+  padding: 60px 20px !important;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cataloguelist-paginationContainer {
+  background: #f9fafb;
+  border-top: 2px solid #e5e7eb;
+  padding: 20px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cataloguelist-paginationInfo {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.cataloguelist-paginationButtons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cataloguelist-btnPagination {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cataloguelist-btnPagination:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.cataloguelist-btnPagination:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cataloguelist-paginationCounter {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 700;
+  min-width: 100px;
+  text-align: center;
+}

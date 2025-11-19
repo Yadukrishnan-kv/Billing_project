@@ -1,0 +1,297 @@
+/* ========================================= */
+/*        VIEW INVENTORY – FULLY MATCHED      */
+/*   Identical design language to viewPurchase.css   */
+/* ========================================= */
+
+.viewinventory-wrapper {
+  padding: 24px 20px;
+  background: #f5f5f5;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Top Toolbar */
+.viewinventory-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.viewinventory-btnBack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.viewinventory-btnBack:hover {
+  background: #f9fafb;
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateX(-2px);
+}
+
+.viewinventory-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.viewinventory-btnEdit,
+.viewinventory-btnDelete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.viewinventory-btnEdit:hover,
+.viewinventory-btnDelete:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+}
+
+/* Main Document Card */
+.viewinventory-document {
+  background: white;
+  padding: 60px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.viewinventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #667eea;
+}
+
+.viewinventory-headerLeft h1 {
+  font-size: 42px;
+  font-weight: 900;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  letter-spacing: -1px;
+}
+
+.viewinventory-itemNumber {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.viewinventory-statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.viewinventory-status-active { background: #d1fae5; color: #065f46; }
+.viewinventory-status-inactive { background: #fee2e2; color: #991b1b; }
+.viewinventory-status-lowstock { background: #fef3c7; color: #78350f; }
+
+/* Info Grid */
+.viewinventory-infoSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.viewinventory-infoBlock h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
+}
+
+.viewinventory-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.viewinventory-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.viewinventory-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  padding: 12px 14px;
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+/* Dynamic Sections (Purchase, Sales, Attributes) */
+.viewinventory-dynamicSection {
+  margin-bottom: 48px;
+}
+
+.viewinventory-sectionTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 20px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #667eea;
+  display: inline-block;
+}
+
+.viewinventory-block {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.03) 100%);
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.viewinventory-blockGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Summary / Stock Info */
+.viewinventory-stockSummary {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.viewinventory-stockCard {
+  width: 40%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.viewinventory-stockLabel {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.viewinventory-stockValue {
+  font-size: 36px;
+  font-weight: 900;
+  margin: 8px 0;
+  letter-spacing: -1px;
+}
+
+.viewinventory-stockSubtext {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Footer Metadata */
+.viewinventory-footer {
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+/* States */
+.viewinventory-errorMessage {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ef4444;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+}
+
+.viewinventory-loading {
+  text-align: center;
+  padding: 80px 40px;
+  color: #9ca3af;
+  font-size: 18px;
+  font-weight: 500;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+/* Print Styles */
+@media print {
+  .viewinventory-toolbar,
+  .viewinventory-actions {
+    display: none !important;
+  }
+  
+  .viewinventory-wrapper {
+    background: white;
+    padding: 0;
+  }
+
+  .viewinventory-document {
+    box-shadow: none;
+    border: none;
+    padding: 40px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .viewinventory-wrapper { padding: 16px 12px; }
+  .viewinventory-document { padding: 32px 20px; }
+  .viewinventory-toolbar { flex-direction: column; align-items: flex-start; }
+  .viewinventory-actions { width: 100%; flex-direction: column; }
+  .viewinventory-btnEdit,
+  .viewinventory-btnDelete { flex: 1; justify-content: center; }
+  .viewinventory-header { flex-direction: column; gap: 20px; }
+  .viewinventory-infoSection { grid-template-columns: 1fr; gap: 24px; }
+  .viewinventory-stockSummary { justify-content: center; }
+  .viewinventory-stockCard { width: 100%; max-width: 400px; }
+  .viewinventory-blockGrid { grid-template-columns: 1fr; }
+}
