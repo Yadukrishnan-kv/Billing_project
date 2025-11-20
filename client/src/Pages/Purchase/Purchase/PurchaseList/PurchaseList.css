@@ -2,6 +2,7 @@
   padding: 30px 20px;
   padding-top: 12px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  max-width: 100%;
 }
 
 .purchaseList-viewTabs {
@@ -19,6 +20,8 @@
   cursor: pointer;
   border-bottom: 3px solid transparent;
   transition: all 0.3s ease;
+    margin-top: 30px;
+
 }
 
 .purchaseList-viewTab-active {
@@ -86,6 +89,7 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  min-width: 140px;
 }
 
 .purchaseList-btnToolbar:hover {
@@ -192,7 +196,7 @@
   font-weight: 600;
   color: #374151;
   cursor: pointer;
-  min-width: 90px;
+  min-width: 120px;
   outline: none;
 }
 
@@ -263,22 +267,19 @@
   background: #f9fafb;
 }
 
+/* === SCROLLABLE TABLE WRAPPER === */
 .purchaseList-tableWrapper {
+  width: 100%;
   overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.purchaseList-tableWrapper::-webkit-scrollbar {
-  display: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .purchaseList-table {
   width: 100%;
+  min-width: 900px; /* Prevent collapse on mobile */
   border-collapse: separate;
   border-spacing: 0;
   background-color: white;
-  min-width: 1200px;
 }
 
 .purchaseList-table thead {
@@ -318,11 +319,6 @@
   transition: all 0.3s ease;
 }
 
-.purchaseList-row {
-  border-bottom: 2px solid #e5e7eb;
-  margin-bottom: 8px;
-}
-
 .purchaseList-table tbody tr:hover {
   background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
   box-shadow: inset 0 0 8px rgba(102, 126, 234, 0.08);
@@ -330,14 +326,9 @@
 
 .purchaseList-table td {
   padding: 18px;
-  margin: 0 6px;
   font-size: 14px;
   color: #1f2937;
   font-weight: 600;
-}
-
-.purchaseList-table th {
-  margin: 0 6px;
 }
 
 .purchaseList-idCell {
@@ -356,7 +347,7 @@
   font-size: 15px;
 }
 
-.purchaseList-customerCell {
+.purchaseList-supplierCell {
   font-weight: 600;
   color: #374151;
 }
@@ -403,15 +394,6 @@
   gap: 16px;
   align-items: center;
   justify-content: flex-start;
-  position: sticky;
-  right: 0;
-  background: white;
-  padding: 18px;
-  z-index: 100;
-}
-
-.purchaseList-table tbody tr:hover .purchaseList-actionsCell {
-  background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
 }
 
 .purchaseList-btnAction {
@@ -522,20 +504,180 @@
   text-align: center;
 }
 
-body {
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .purchaseList-headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .purchaseList-title {
+    font-size: 30px;
+  }
+
+  .purchaseList-toolbarSection,
+  .purchaseList-searchExportSection {
+    padding: 16px 20px;
+  }
+
+  .purchaseList-table th,
+  .purchaseList-table td {
+    padding: 14px 12px;
+    font-size: 13px;
+  }
+
+  .purchaseList-idCell,
+  .purchaseList-titleCell {
+    font-size: 13px;
+  }
+
+  .purchaseList-actionsCell {
+    gap: 10px;
+  }
+
+  .purchaseList-btnAction {
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile: ≤768px */
+@media (max-width: 768px) {
+  .purchaseList-wrapper {
+    padding: 16px 12px;
+  }
+
+  .purchaseList-headerContainer {
+    padding: 24px 20px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .purchaseList-title {
+    font-size: 26px;
+  }
+
+  .purchaseList-toolbarSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .purchaseList-toolbarButtons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .purchaseList-btnCreate {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .purchaseList-searchExportSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .purchaseList-searchWrapper {
+    max-width: 100%;
+  }
+
+  .purchaseList-btnExport {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .purchaseList-tableContainer {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .purchaseList-table th,
+  .purchaseList-table td {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+
+  .purchaseList-idCell,
+  .purchaseList-titleCell,
+  .purchaseList-supplierCell {
+    font-size: 12px;
+  }
+
+  .purchaseList-actionsCell {
+    gap: 8px;
+  }
+
+  .purchaseList-btnAction {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .purchaseList-paginationContainer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .purchaseList-paginationInfo,
+  .purchaseList-paginationButtons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .purchaseList-btnPagination {
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .purchaseList-paginationCounter {
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile: ≤480px */
+@media (max-width: 480px) {
+  .purchaseList-headerContainer {
+    padding: 20px 16px;
+  }
+
+  .purchaseList-title {
+    font-size: 22px;
+  }
+
+  .purchaseList-toolbarSection,
+  .purchaseList-searchExportSection {
+    padding: 12px 16px;
+  }
+
+  .purchaseList-table th,
+  .purchaseList-table td {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .purchaseList-btnAction {
+    padding: 5px 7px;
+    font-size: 13px;
+  }
+
+  .purchaseList-btnPagination {
+    padding: 7px 14px;
+    font-size: 11px;
+  }
+}
+
+/* Hide scrollbars globally */
+body, html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
+body::-webkit-scrollbar,
 html::-webkit-scrollbar {
   display: none;
 }

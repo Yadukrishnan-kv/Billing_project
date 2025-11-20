@@ -1,11 +1,10 @@
-// src/components/admin/DashboardPage.jsx
+// src/components/admin/AdminDash.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdminHeader from '../AdminHeader/AdminHeader';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
-import './AdminDash.css'; // Make sure path is correct
-import { FiDollarSign, FiPackage, FiShoppingBag, FiUser } from 'react-icons/fi';
+import './AdminDash.css';
 
 const AdminDash = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -15,17 +14,19 @@ const AdminDash = () => {
   const navigate = useNavigate();
   const backendUrl = process.env.REACT_APP_BACKEND_IP || 'http://localhost:5000';
 
-  // Auto-collapse sidebar on mobile/tablet
   useEffect(() => {
     const handleResize = () => {
-      setCollapsed(window.innerWidth <= 1024);
+      if (window.innerWidth <= 768) {
+        setCollapsed(true);
+      } else {
+        setCollapsed(false);
+      }
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Fetch logged-in user
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -50,7 +51,6 @@ const AdminDash = () => {
 
   return (
     <div className="admin-layout">
-      {/* Header */}
       <AdminHeader
         user={user}
         dropdownOpen={dropdownOpen}
@@ -59,7 +59,6 @@ const AdminDash = () => {
         setCollapsed={setCollapsed}
       />
 
-      {/* Sidebar */}
       <AdminSidebar
         collapsed={collapsed}
         setCollapsed={setCollapsed}
@@ -67,19 +66,15 @@ const AdminDash = () => {
         setOpenMenu={setOpenMenu}
       />
 
-      {/* Main Content */}
       <main className={`admin-content ${collapsed ? 'collapsed' : ''}`}>
         <div className="welcome-wrapper">
           <h1 className="welcome-title">
-            Welcome to {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'Dashboard'}
+            Welcome back, {user.username}!
           </h1>
           <p className="admin-note">
-            You are logged in as <strong>{user.username}</strong> — manage your business with full control.
+            You are logged in as <strong>{user.role}</strong> — manage your business with full control.
           </p>
         </div>
-
-        {/* Optional: Add stats grid later */}
-        {/* <div className="dashboard-grid">...</div> */}
       </main>
     </div>
   );

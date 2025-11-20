@@ -30,17 +30,20 @@ body[data-theme="dark"] {
 }
 
 .createsupplier-container {
-  width: 90%;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Mono', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .createsupplier-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .createsupplier-header h1 {
@@ -62,6 +65,7 @@ body[data-theme="dark"] {
   cursor: pointer;
   transition: var(--transition);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .createsupplier-btn-back:hover {
@@ -85,9 +89,8 @@ body[data-theme="dark"] {
 .createsupplier-form {
   background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
   padding: 40px;
-  width: 1200px;
+  width: 100%;
   max-width: 1200px;
-  flex: 0 0 1200px;
   box-sizing: border-box;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
@@ -104,12 +107,21 @@ body[data-theme="dark"] .createsupplier-form {
   border-color: var(--neutral-300);
 }
 
-/* Grid layout with equal width inputs */
+/* Scrollable wrapper for form content */
+.createsupplier-form-content {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+}
+
+/* Grid layout with fallback for mobile */
 .createsupplier-row {
   display: grid;
-  grid-template-columns: repeat(2, 3fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 22px;
   margin-bottom: 28px;
+  min-width: 600px; /* Prevent collapse on mobile */
 }
 
 .createsupplier-group {
@@ -121,6 +133,7 @@ body[data-theme="dark"] .createsupplier-form {
 .createsupplier-group input,
 .createsupplier-group select {
   width: 100%;
+  min-width: 200px; /* Ensure dropdowns show full text */
 }
 
 .createsupplier-group label {
@@ -137,7 +150,7 @@ body[data-theme="dark"] .createsupplier-form {
   margin-left: 3px;
 }
 
-/* Enhanced input and select styling with better focus states */
+/* Enhanced input and select styling */
 .createsupplier-group input,
 .createsupplier-group select {
   padding: 12px 14px;
@@ -250,68 +263,100 @@ body[data-theme="dark"] .createsupplier-group select:focus {
   font-weight: 500;
 }
 
-@media (max-width: 1200px) {
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
   .createsupplier-container {
-    width: 90%;
+    padding: 32px 16px;
   }
+
+  .createsupplier-form {
+    padding: 32px;
+  }
+
   .createsupplier-row {
-    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
   }
 }
 
+/* Mobile: ≤768px */
 @media (max-width: 768px) {
   .createsupplier-container {
-    width: 95%;
-    padding: 20px 12px;
+    padding: 16px 12px;
   }
+
   .createsupplier-header {
     flex-direction: column;
     align-items: stretch;
-    margin-bottom: 30px;
+    gap: 12px;
   }
+
   .createsupplier-header h1 {
     font-size: 24px;
-  }
-  .createsupplier-btn-back {
-    width: 100%;
     text-align: center;
   }
+
+  .createsupplier-btn-back {
+    width: 100%;
+    justify-content: center;
+  }
+
   .createsupplier-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 20px;
   }
+
   .createsupplier-form {
     padding: 24px;
+    border-radius: 10px;
   }
+
+  .createsupplier-group label {
+    font-size: 12px;
+  }
+
+  .createsupplier-group input,
+  .createsupplier-group select {
+    padding: 10px 12px;
+    font-size: 14px;
+    height: auto;
+    min-width: auto;
+    width: 52%;
+  }
+
   .createsupplier-actions {
     flex-direction: column;
     gap: 10px;
   }
+
   .createsupplier-btn-save,
   .createsupplier-btn-cancel {
     width: 100%;
   }
 }
 
+/* Small Mobile: ≤480px */
 @media (max-width: 480px) {
   .createsupplier-header h1 {
     font-size: 20px;
+    margin-top: 50px;
   }
+
   .createsupplier-form {
     padding: 16px;
     border-radius: 8px;
   }
-  .createsupplier-group label {
-    font-size: 12px;
-  }
+
   .createsupplier-group input,
   .createsupplier-group select {
-    padding: 10px 12px;
+    padding: 9px 10px;
+    font-size: 13px;
   }
-  .createsupplier-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+
+  .createsupplier-section-title {
+    font-size: 14px;
+    margin: 28px 0 18px 0;
   }
 }

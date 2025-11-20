@@ -1,5 +1,7 @@
 .supplierlist-wrapper {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  padding: 30px 20px;
+  max-width: 100%;
 }
 
 /* View tabs */
@@ -87,20 +89,12 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  min-width: 140px;
 }
 
 .supplierlist-btn-toolbar:hover {
   background: #f9fafb;
   border-color: #9ca3af;
-}
-
-.supplierlist-dropdown-icon {
-  font-size: 16px;
-  transition: transform 0.3s ease;
-}
-
-.supplierlist-btn-toolbar:hover .supplierlist-dropdown-icon {
-  transform: rotate(180deg);
 }
 
 .supplierlist-icon {
@@ -232,11 +226,7 @@
   border-color: #9ca3af;
 }
 
-.supplierlist-export-icon {
-  font-size: 16px;
-}
-
-/* Table Container */
+/* === SCROLLABLE TABLE WRAPPER === */
 .supplierlist-table-container {
   background: #ffffff;
   border-radius: 0 0 16px 16px;
@@ -268,16 +258,13 @@
 
 .supplierlist-table-wrapper {
   overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.supplierlist-table-wrapper::-webkit-scrollbar {
-  display: none;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 .supplierlist-table {
   width: 100%;
+  min-width: 800px; /* Prevent collapse on mobile */
   border-collapse: separate;
   border-spacing: 0;
   background-color: white;
@@ -309,19 +296,9 @@
   background: linear-gradient(135deg, #f3f4f6 0%, #ececf1 100%);
 }
 
-.supplierlist-sort-icon {
-  margin-left: 6px;
-  font-size: 12px;
-  opacity: 0.6;
-}
-
 .supplierlist-table tbody tr {
   border-bottom: 2px solid #e5e7eb;
   transition: all 0.3s ease;
-}
-
-.supplierlist-row {
-  border-bottom: 2px solid #e5e7eb;
 }
 
 .supplierlist-table tbody tr:hover {
@@ -331,14 +308,9 @@
 
 .supplierlist-table td {
   padding: 18px;
-  margin: 0 6px;
   font-size: 14px;
   color: #1f2937;
   font-weight: 600;
-}
-
-.supplierlist-table th {
-  margin: 0 6px;
 }
 
 .supplierlist-id-cell {
@@ -473,14 +445,50 @@
   text-align: center;
 }
 
-/* Responsive */
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .supplierlist-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .supplierlist-title {
+    font-size: 30px;
+  }
+
+  .supplierlist-toolbar-section,
+  .supplierlist-search-export-section {
+    padding: 16px 20px;
+  }
+
+  .supplierlist-table th,
+  .supplierlist-table td {
+    padding: 14px 12px;
+    font-size: 13px;
+  }
+
+  .supplierlist-id-cell,
+  .supplierlist-name-cell {
+    font-size: 13px;
+  }
+
+  .supplierlist-actions-cell {
+    gap: 12px;
+  }
+
+  .supplierlist-btn-action {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile: ≤768px */
 @media (max-width: 768px) {
   .supplierlist-wrapper {
     padding: 16px 12px;
-  }
-
-  .supplierlist-view-tabs {
-    margin-bottom: 16px;
   }
 
   .supplierlist-header-container {
@@ -488,34 +496,31 @@
     border-radius: 12px 12px 0 0;
   }
 
-  .supplierlist-header-content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-  }
-
   .supplierlist-title {
     font-size: 26px;
   }
 
   .supplierlist-toolbar-section {
-    padding: 16px;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
   .supplierlist-toolbar-buttons {
-    width: auto;
-    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .supplierlist-btn-create-toolbar {
-    margin-left: auto;
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
   }
 
   .supplierlist-search-export-section {
-    padding: 14px 16px;
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .supplierlist-search-wrapper {
@@ -533,105 +538,81 @@
 
   .supplierlist-table th,
   .supplierlist-table td {
-    padding: 14px 12px;
+    padding: 12px 10px;
     font-size: 12px;
-    margin: 0 4px;
   }
 
-  .supplierlist-table th {
-    font-size: 11px;
+  .supplierlist-id-cell,
+  .supplierlist-name-cell {
+    font-size: 12px;
   }
 
   .supplierlist-actions-cell {
-    gap: 6px;
+    gap: 8px;
   }
 
   .supplierlist-btn-action {
-    padding: 8px 10px;
-    font-size: 16px;
-  }
-
-  .supplierlist-id-cell {
-    font-size: 11px;
-  }
-
-  .supplierlist-name-cell {
-    font-size: 13px;
+    padding: 6px 10px;
+    font-size: 14px;
   }
 
   .supplierlist-pagination-container {
     flex-direction: column;
-    padding: 16px 20px;
     gap: 12px;
+    text-align: center;
   }
 
+  .supplierlist-pagination-info,
   .supplierlist-pagination-buttons {
     width: 100%;
     justify-content: center;
   }
 
-  .supplierlist-pagination-info {
+  .supplierlist-btn-pagination {
+    padding: 8px 16px;
+    font-size: 12px;
     width: 100%;
-    text-align: center;
+  }
+
+  .supplierlist-pagination-counter {
+    font-size: 12px;
   }
 }
 
+/* Small Mobile: ≤480px */
 @media (max-width: 480px) {
   .supplierlist-header-container {
-    padding: 16px 14px;
+    padding: 16px 12px;
+    margin-top: 50px;
   }
 
   .supplierlist-title {
     font-size: 22px;
   }
 
-  .supplierlist-toolbar-section {
-    padding: 12px;
-    justify-content: space-between;
-  }
-
-  .supplierlist-btn-toolbar {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-
+  .supplierlist-toolbar-section,
   .supplierlist-search-export-section {
     padding: 12px;
   }
 
-  .supplierlist-search-wrapper {
-    flex-direction: column;
-  }
-
-  .supplierlist-search-field-select {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #d1d5db;
-  }
-
   .supplierlist-table th,
   .supplierlist-table td {
-    padding: 12px 8px;
+    padding: 10px 8px;
     font-size: 11px;
-    margin: 0 2px;
   }
 
   .supplierlist-btn-action {
-    padding: 6px 8px;
-    font-size: 14px;
+    padding: 5px 8px;
+    font-size: 13px;
   }
 
   .supplierlist-btn-pagination {
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-
-  .supplierlist-pagination-counter {
+    padding: 7px 14px;
     font-size: 11px;
   }
 }
 
-/* Remove scrollbars */
+/* Hide scrollbars globally */
 body, html {
   scrollbar-width: none;
   -ms-overflow-style: none;

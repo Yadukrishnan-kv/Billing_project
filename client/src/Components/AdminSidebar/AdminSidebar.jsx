@@ -1,6 +1,7 @@
 // src/components/admin/AdminSidebar.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './AdminSidebar.css';
 import {
   FiHome,
   FiShoppingBag,
@@ -18,6 +19,7 @@ import {
   FiBox,
   FiLayers,
   FiBookOpen,
+  FiMenu,
 } from 'react-icons/fi';
 
 const submenuIcons = {
@@ -65,23 +67,44 @@ const getSubmenuPath = (parentLabel, subLabel) => {
   return `${base}/${cleanSub}`;
 };
 
-const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
+const AdminSidebar = ({ collapsed: externalCollapsed, setCollapsed: setExternalCollapsed }) => {
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
 
-  // Auto-collapse on tablet & mobile
+  // Close mobile sidebar on route change
+  useEffect(() => {
+    if (mobileOpen) {
+      setMobileOpen(false);
+    }
+  }, [location.pathname]);
+
+  // Manage desktop collapse state
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1024) {
-        setCollapsed(true);
+      if (window.innerWidth > 768) {
+        setExternalCollapsed(false);
+        setMobileOpen(false);
+      } else {
+        setExternalCollapsed(true);
       }
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [setCollapsed]);
+  }, [setExternalCollapsed]);
 
-  const toggleMenu = (label) => {
-    setOpenMenu(openMenu === label ? null : label);
+  const isMobile = window.innerWidth <= 768;
+
+  const toggleSubmenu = (label) => {
+    setOpenSubmenu(openSubmenu === label ? null : label);
+  };
+
+  const handleNavigation = () => {
+    if (isMobile) {
+      setMobileOpen(false);
+      setOpenSubmenu(null); // Also close any open submenu
+    }
   };
 
   const isActive = (path) => location.pathname === path;
@@ -89,63 +112,85 @@ const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
     location.pathname.startsWith(getSubmenuPath(parent, sub));
 
   return (
-    <aside className={`admin-sidebar ${collapsed ? 'collapsed' : ''}`}>
-      {/* Empty logo area - as per your request */}
-      <div className="sidebar-logo"></div>
+    <>
+      {/* Hamburger toggle — ONLY on mobile (≤768px) */}
+      {isMobile && (
+        <button
+          className="mobile-menu-toggle"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle navigation"
+        >
+          <FiMenu size={24} />
+        </button>
+      )}
 
-      <nav className="sidebar-menu">
-        {menu.map((item, idx) => {
-          if (!item.sub) {
+     
+
+      {/* Sidebar */}
+      <aside
+        className={`admin-sidebar ${
+          isMobile
+            ? mobileOpen
+              ? 'mobile-open'
+              : 'mobile-collapsed'
+            : externalCollapsed
+            ? 'collapsed'
+            : ''
+        }`}
+      >
+        <div className="sidebar-logo"></div>
+
+        <nav className="sidebar-menu">
+          {menu.map((item, idx) => {
+            if (!item.sub) {
+              return (
+                <Link
+                  key={idx}
+                  to={item.path}
+                  className={`menu-item ${isActive(item.path) ? 'active' : ''}`}
+                  onClick={handleNavigation}
+                >
+                  <item.icon className="menu-icon" />
+                  <span className="menu-label">{item.label}</span>
+                </Link>
+              );
+            }
+
+            const isOpen = openSubmenu === item.label;
+
             return (
-              <Link
-                key={idx}
-                to={item.path}
-                className={`menu-item ${isActive(item.path) ? 'active' : ''}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <item.icon className="menu-icon" />
-                {!collapsed && <span className="menu-label">{item.label}</span>}
-              </Link>
-            );
-          }
-
-          const isOpen = openMenu === item.label;
-
-          return (
-            <div key={idx} className="menu-item-container">
-              {/* Parent menu item - no arrow */}
-              <div
-                className={`menu-item has-sub ${isOpen ? 'open' : ''}`}
-                onClick={() => toggleMenu(item.label)}
-              >
-                <item.icon className="menu-icon" />
-                {!collapsed && <span className="menu-label">{item.label}</span>}
-                {/* No arrow icon at all */}
-              </div>
-
-              {/* Submenu */}
-              {!collapsed && isOpen && (
-                <div className="submenu">
-                  {item.sub.map((sub, sidx) => (
-                    <Link
-                      key={sidx}
-                      to={getSubmenuPath(item.label, sub)}
-                      className={`submenu-item ${isSubmenuActive(item.label, sub) ? 'active' : ''}`}
-                      style={{ textDecoration: 'none' }}
-                    >
-                      {submenuIcons[sub] && (
-                        <span className="submenu-icon">{submenuIcons[sub]}</span>
-                      )}
-                      <span>{sub}</span>
-                    </Link>
-                  ))}
+              <div key={idx} className="menu-item-container">
+                <div
+                  className={`menu-item has-sub ${isOpen ? 'open' : ''}`}
+                  onClick={() => toggleSubmenu(item.label)}
+                >
+                  <item.icon className="menu-icon" />
+                  <span className="menu-label">{item.label}</span>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </nav>
-    </aside>
+
+                {isOpen && (
+                  <div className="submenu">
+                    {item.sub.map((sub, sidx) => (
+                      <Link
+                        key={sidx}
+                        to={getSubmenuPath(item.label, sub)}
+                        className={`submenu-item ${isSubmenuActive(item.label, sub) ? 'active' : ''}`}
+                        onClick={handleNavigation}
+                      >
+                        {submenuIcons[sub] && (
+                          <span className="submenu-icon">{submenuIcons[sub]}</span>
+                        )}
+                        <span>{sub}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
+      </aside>
+    </>
   );
 };
 

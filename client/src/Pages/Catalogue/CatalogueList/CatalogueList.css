@@ -3,6 +3,8 @@
   padding: 30px 20px;
   padding-top: 12px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  max-width: 100%;
+  margin-top: 50px;
 }
 
 .cataloguelist-viewTabs {
@@ -87,20 +89,12 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  min-width: 140px;
 }
 
 .cataloguelist-btnToolbar:hover {
   background: #f9fafb;
   border-color: #9ca3af;
-}
-
-.cataloguelist-dropdownIcon {
-  font-size: 16px;
-  transition: transform 0.3s ease;
-}
-
-.cataloguelist-btnToolbar:hover .cataloguelist-dropdownIcon {
-  transform: rotate(180deg);
 }
 
 .cataloguelist-icon {
@@ -153,6 +147,7 @@
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  margin-left: auto;
 }
 
 .cataloguelist-btnCreate:hover {
@@ -192,7 +187,7 @@
   font-weight: 600;
   color: #374151;
   cursor: pointer;
-  min-width: 90px;
+  min-width: 100px;
   outline: none;
 }
 
@@ -230,10 +225,6 @@
   border-color: #9ca3af;
 }
 
-.cataloguelist-exportIcon {
-  font-size: 16px;
-}
-
 .cataloguelist-tableContainer {
   background: #ffffff;
   border-radius: 0 0 16px 16px;
@@ -263,18 +254,20 @@
   background: #f9fafb;
 }
 
+/* === ONLY TABLE SCROLLBAR === */
 .cataloguelist-tableWrapper {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* ==================== TABLE WITH PERFECT ALIGNMENT ==================== */
 .cataloguelist-table {
   width: 100%;
-  table-layout: fixed;           /* Forces columns to respect widths */
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background-color: white;
-  min-width: 700px;
+  min-width: 600px; /* Enough for 3 columns */
 }
 
 .cataloguelist-table thead {
@@ -292,7 +285,6 @@
   text-align: left;
 }
 
-/* Column 1: Name - 55% */
 .cataloguelist-table th:nth-child(1),
 .cataloguelist-table td:nth-child(1) {
   width: 55%;
@@ -300,7 +292,6 @@
   text-align: left;
 }
 
-/* Column 2: Module - 25% */
 .cataloguelist-table th:nth-child(2),
 .cataloguelist-table td:nth-child(2) {
   width: 25%;
@@ -308,7 +299,6 @@
   text-align: left;
 }
 
-/* Column 3: Actions - 20% + Centered */
 .cataloguelist-table th:nth-child(3),
 .cataloguelist-table td:nth-child(3) {
   width: 20%;
@@ -322,12 +312,6 @@
 
 .cataloguelist-sortableHeader:hover {
   background: #ececf1;
-}
-
-.cataloguelist-sortIcon {
-  margin-left: 6px;
-  font-size: 12px;
-  opacity: 0.7;
 }
 
 .cataloguelist-table tbody tr {
@@ -347,26 +331,11 @@
   vertical-align: middle;
 }
 
-.cataloguelist-titleCell {
-  font-weight: 700;
-  color: #111827;
-  font-size: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-left: 24px !important;
-}
-
 .cataloguelist-actionsCell {
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: center;
-  padding: 16px 20px !important;
-}
-
-.cataloguelist-table tbody tr:hover .cataloguelist-actionsCell {
-  background: linear-gradient(135deg, #f8f9ff 0%, #f5f3ff 100%);
 }
 
 .cataloguelist-btnAction {
@@ -456,10 +425,165 @@
   cursor: not-allowed;
 }
 
-.cataloguelist-paginationCounter {
-  font-size: 13px;
-  color: #374151;
-  font-weight: 700;
-  min-width: 100px;
-  text-align: center;
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .cataloguelist-headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cataloguelist-title {
+    font-size: 30px;
+  }
+
+  .cataloguelist-toolbarSection,
+  .cataloguelist-searchExportSection {
+    padding: 16px 20px;
+  }
+
+  .cataloguelist-table th,
+  .cataloguelist-table td {
+    padding: 14px 12px;
+    font-size: 13px;
+  }
+
+  .cataloguelist-actionsCell {
+    gap: 8px;
+  }
+
+  .cataloguelist-btnAction {
+    padding: 7px 11px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile: ≤768px */
+@media (max-width: 768px) {
+  .cataloguelist-wrapper {
+    padding: 16px 12px;
+  }
+
+  .cataloguelist-headerContainer {
+    padding: 24px 20px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .cataloguelist-title {
+    font-size: 26px;
+  }
+
+  .cataloguelist-toolbarSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .cataloguelist-toolbarButtons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .cataloguelist-btnCreate {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cataloguelist-searchExportSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .cataloguelist-searchWrapper {
+    max-width: 100%;
+  }
+
+  .cataloguelist-btnExport {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cataloguelist-tableContainer {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .cataloguelist-table th,
+  .cataloguelist-table td {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+
+  .cataloguelist-actionsCell {
+    gap: 6px;
+  }
+
+  .cataloguelist-btnAction {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .cataloguelist-paginationContainer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .cataloguelist-paginationInfo,
+  .cataloguelist-paginationButtons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cataloguelist-btnPagination {
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 100%;
+  }
+}
+
+/* Small Mobile: ≤480px */
+@media (max-width: 480px) {
+  .cataloguelist-headerContainer {
+    padding: 20px 16px;
+  }
+
+  .cataloguelist-title {
+    font-size: 22px;
+  }
+
+  .cataloguelist-toolbarSection,
+  .cataloguelist-searchExportSection {
+    padding: 12px 16px;
+  }
+
+  .cataloguelist-table th,
+  .cataloguelist-table td {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .cataloguelist-btnAction {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .cataloguelist-btnPagination {
+    padding: 7px 14px;
+    font-size: 11px;
+  }
+}
+
+/* Hide scrollbars globally */
+body, html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
 }

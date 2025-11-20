@@ -2,6 +2,8 @@
   padding: 30px 20px;
   padding-top: 12px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  max-width: 100%;
+  margin-top: 50px;
 }
 
 .itemgrouplist-viewTabs {
@@ -86,6 +88,7 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  min-width: 140px;
 }
 
 .itemgrouplist-btnToolbar:hover {
@@ -192,7 +195,7 @@
   font-weight: 600;
   color: #374151;
   cursor: pointer;
-  min-width: 90px;
+  min-width: 100px;
   outline: none;
 }
 
@@ -263,22 +266,19 @@
   background: #f9fafb;
 }
 
+/* === ONLY TABLE SCROLLBAR === */
 .itemgrouplist-tableWrapper {
+  width: 100%;
   overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.itemgrouplist-tableWrapper::-webkit-scrollbar {
-  display: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .itemgrouplist-table {
   width: 100%;
+  min-width: 500px; /* Enough for 2 columns */
   border-collapse: separate;
   border-spacing: 0;
   background-color: white;
-  min-width: 1200px;
 }
 
 .itemgrouplist-table thead {
@@ -318,11 +318,6 @@
   transition: all 0.3s ease;
 }
 
-.itemgrouplist-row {
-  border-bottom: 2px solid #e5e7eb;
-  margin-bottom: 8px;
-}
-
 .itemgrouplist-table tbody tr:hover {
   background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
   box-shadow: inset 0 0 8px rgba(102, 126, 234, 0.08);
@@ -330,24 +325,9 @@
 
 .itemgrouplist-table td {
   padding: 18px;
-  margin: 0 6px;
   font-size: 14px;
   color: #1f2937;
   font-weight: 600;
-}
-
-.itemgrouplist-table th {
-  margin: 0 6px;
-}
-
-.itemgrouplist-idCell {
-  font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 13px;
-  letter-spacing: 0.5px;
 }
 
 .itemgrouplist-titleCell {
@@ -361,15 +341,6 @@
   gap: 16px;
   align-items: center;
   justify-content: flex-start;
-  position: sticky;
-  right: 0;
-  background: white;
-  padding: 18px;
-  z-index: 100;
-}
-
-.itemgrouplist-table tbody tr:hover .itemgrouplist-actionsCell {
-  background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
 }
 
 .itemgrouplist-btnAction {
@@ -480,20 +451,177 @@
   text-align: center;
 }
 
-body {
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .itemgrouplist-headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .itemgrouplist-title {
+    font-size: 30px;
+  }
+
+  .itemgrouplist-toolbarSection,
+  .itemgrouplist-searchExportSection {
+    padding: 16px 20px;
+  }
+
+  .itemgrouplist-table th,
+  .itemgrouplist-table td {
+    padding: 14px 12px;
+    font-size: 13px;
+  }
+
+  .itemgrouplist-titleCell {
+    font-size: 13px;
+  }
+
+  .itemgrouplist-actionsCell {
+    gap: 10px;
+  }
+
+  .itemgrouplist-btnAction {
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile: ≤768px */
+@media (max-width: 768px) {
+  .itemgrouplist-wrapper {
+    padding: 16px 12px;
+  }
+
+  .itemgrouplist-headerContainer {
+    padding: 24px 20px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .itemgrouplist-title {
+    font-size: 26px;
+  }
+
+  .itemgrouplist-toolbarSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .itemgrouplist-toolbarButtons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .itemgrouplist-btnCreate {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .itemgrouplist-searchExportSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .itemgrouplist-searchWrapper {
+    max-width: 100%;
+  }
+
+  .itemgrouplist-btnExport {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .itemgrouplist-tableContainer {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .itemgrouplist-table th,
+  .itemgrouplist-table td {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+
+  .itemgrouplist-titleCell {
+    font-size: 12px;
+  }
+
+  .itemgrouplist-actionsCell {
+    gap: 8px;
+  }
+
+  .itemgrouplist-btnAction {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .itemgrouplist-paginationContainer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .itemgrouplist-paginationInfo,
+  .itemgrouplist-paginationButtons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .itemgrouplist-btnPagination {
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .itemgrouplist-paginationCounter {
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile: ≤480px */
+@media (max-width: 480px) {
+  .itemgrouplist-headerContainer {
+    padding: 20px 16px;
+  }
+
+  .itemgrouplist-title {
+    font-size: 22px;
+  }
+
+  .itemgrouplist-toolbarSection,
+  .itemgrouplist-searchExportSection {
+    padding: 12px 16px;
+  }
+
+  .itemgrouplist-table th,
+  .itemgrouplist-table td {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .itemgrouplist-btnAction {
+    padding: 5px 7px;
+    font-size: 13px;
+  }
+
+  .itemgrouplist-btnPagination {
+    padding: 7px 14px;
+    font-size: 11px;
+  }
+}
+
+/* Hide scrollbars globally */
+body, html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
+body::-webkit-scrollbar,
 html::-webkit-scrollbar {
   display: none;
 }

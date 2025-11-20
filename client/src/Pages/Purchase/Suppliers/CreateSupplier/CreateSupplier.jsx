@@ -113,6 +113,7 @@ function CreateSupplier() {
           </div>
           {error && <div className="createsupplier-error-message">{error}</div>}
           <form onSubmit={handleSubmit} className="createsupplier-form">
+            <div className="createsupplier-form-content">
             <div className="createsupplier-row">
               <div className="createsupplier-group">
                 <label htmlFor="supplierName">
@@ -380,6 +381,7 @@ function CreateSupplier() {
               >
                 Cancel
               </button>
+            </div>
             </div>
           </form>
         </div>

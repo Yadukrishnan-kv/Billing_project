@@ -3,6 +3,26 @@
 
 * { font-family: 'Inter', sans-serif; }
 
+/* === Mobile Toggle Button (ONLY on ≤768px) === */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 5px;
+  left: 16px;
+  z-index: 1100;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #1e293b;
+  color: #e2e8f0;
+  border: none;
+  cursor: pointer;
+ background: linear-gradient(135deg, #6366f1, #8b5cf6);  backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Sidebar === */
 .admin-sidebar {
   width: 260px;
   background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
@@ -11,26 +31,61 @@
   top: 0;
   left: 0;
   height: 100vh;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  z-index: 999;
+  z-index: 1000;
   box-shadow: 5px 0 25px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .admin-sidebar.collapsed {
   width: 80px;
 }
 
-/* Empty logo area */
+.admin-sidebar.collapsed .menu-label,
+.admin-sidebar.collapsed .submenu {
+  display: none !important;
+}
+
+/* Mobile states */
+.admin-sidebar.mobile-collapsed {
+  transform: translateX(-100%);
+}
+
+.admin-sidebar.mobile-open {
+  transform: translateX(0);
+  width: 280px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* === Mobile-only styles === */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+  }
+
+  .admin-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+}
+
+/* === Shared styles (logo, menu, etc.) === */
 .sidebar-logo {
   padding: 20px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   min-height: 72px;
 }
 
-/* Menu */
 .sidebar-menu {
   margin-top: 16px;
   padding: 8px 0;
@@ -47,7 +102,6 @@
   border-radius: 3px;
 }
 
-/* Main Menu Items */
 .menu-item {
   display: flex;
   align-items: center;
@@ -59,6 +113,7 @@
   border-radius: 14px;
   font-weight: 500;
   position: relative;
+  text-decoration: none;
 }
 
 .menu-item:hover {
@@ -89,23 +144,14 @@
 .menu-icon {
   font-size: 1.35rem;
   min-width: 28px;
-  transition: transform 0.3s ease;
 }
 
 .menu-label {
   margin-left: 16px;
   font-size: 0.98rem;
   white-space: nowrap;
-  opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
-.admin-sidebar.collapsed .menu-label {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Submenu */
 .submenu {
   background: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(12px);
@@ -125,6 +171,7 @@
   font-size: 0.93rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .submenu-item::before {
@@ -147,53 +194,27 @@
   transform: scale(1.4);
 }
 
-.admin-sidebar.collapsed .submenu {
-  display: none;
-}
-
-/* Animation */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); max-height: 0; }
   to { opacity: 1; transform: translateY(0); max-height: 400px; }
 }
 
-/* RESPONSIVE - All Devices */
+/* Backdrop for mobile */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* Lighter blur */
+  backdrop-filter: blur(8px);
+  z-index: 1050;
+}
 
-/* Desktop */
-@media (min-width: 1025px) {
+/* Desktop: always visible sidebar */
+@media (min-width: 769px) {
   .admin-sidebar {
-    width: 260px;
-  }
-  .admin-sidebar.collapsed {
-    width: 80px;
+    transform: none !important;
+    display: block;
   }
 }
-
-/* Tablet & Mobile - Always collapsed */
-@media (max-width: 1024px) {
-  .admin-sidebar,
-  .admin-sidebar.collapsed {
-    width: 80px !important;
-  }
-  .menu-label,
-  .submenu,
-  .submenu-arrow {
-    display: none !important;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .admin-sidebar,
-  .admin-sidebar.collapsed {
-    width: 70px !important;
-  }
-  .menu-item {
-    padding: 14px 16px;
-    margin: 4px 8px;
-  }
-  .menu-icon {
-    font-size: 1.3rem;
-  }
-}
-

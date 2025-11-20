@@ -293,6 +293,7 @@ function CreatePurchase() {
           {error && <div className="createpurchase-error-message">{error}</div>}
 
           <form onSubmit={handleSubmit} className="createpurchase-form">
+            
             {/* Supplier & Bill Number */}
             <div className="createpurchase-row">
               <div className="createpurchase-group">

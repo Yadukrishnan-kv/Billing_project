@@ -1,16 +1,19 @@
 /* Identical to CreatePurchase.css – replaced 'createpurchase' with 'createcatalogue' */
 .createcatalogue-container {
-  width: 90%;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Mono', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .createcatalogue-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .createcatalogue-header h1 {
@@ -19,6 +22,7 @@
   color: var(--neutral-900);
   margin: 0;
   letter-spacing: -0.5px;
+  flex: 1 1 auto;
 }
 
 .createcatalogue-btn-back {
@@ -34,6 +38,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .createcatalogue-btn-back:hover {
@@ -56,9 +62,8 @@
 .createcatalogue-form {
   background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
   padding: 40px;
-  width: 1200px;
+  width: 100%;
   max-width: 1200px;
-  flex: 0 0 1200px;
   box-sizing: border-box;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
@@ -75,23 +80,25 @@ body[data-theme="dark"] .createcatalogue-form {
   border-color: var(--neutral-300);
 }
 
-/* Grid Rows */
+/* === FULL-WIDTH INPUTS === */
 .createcatalogue-row {
   display: grid;
-  grid-template-columns: repeat(2, 3fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 22px;
   margin-bottom: 28px;
+  width: 100%;
 }
 
 .createcatalogue-group {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .createcatalogue-group input,
 .createcatalogue-group select,
 .createcatalogue-group textarea {
-  width: 100%;
+  width: 100% !important;
   padding: 12px 14px;
   border: 1.5px solid var(--neutral-200);
   border-radius: 8px;
@@ -101,6 +108,7 @@ body[data-theme="dark"] .createcatalogue-form {
   color: var(--neutral-900);
   transition: var(--transition);
   height: 44px;
+  min-width: 0;
 }
 
 .createcatalogue-group textarea {
@@ -151,11 +159,6 @@ body[data-theme="dark"] .createcatalogue-group textarea:focus {
   margin-left: 3px;
 }
 
-.createcatalogue-group-full {
-  grid-column: 1 / -1;
-}
-
-/* Action Buttons */
 .createcatalogue-actions {
   display: flex;
   gap: 14px;
@@ -163,6 +166,7 @@ body[data-theme="dark"] .createcatalogue-group textarea:focus {
   justify-content: flex-start;
   padding-top: 24px;
   border-top: 1px solid var(--neutral-200);
+  flex-wrap: wrap;
 }
 
 .createcatalogue-btn-save,
@@ -216,49 +220,94 @@ body[data-theme="dark"] .createcatalogue-group textarea:focus {
   font-weight: 500;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .createcatalogue-container {
+    padding: 32px 16px;
+  }
+
+  .createcatalogue-form {
+    padding: 32px;
+  }
+
   .createcatalogue-row {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 }
 
+/* Mobile: ≤768px */
 @media (max-width: 768px) {
-  .createcatalogue-container {
-    width: 95%;
-    padding: 20px 12px;
-  }
   .createcatalogue-header {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
+
   .createcatalogue-header h1 {
     font-size: 24px;
+    text-align: center;
   }
+
   .createcatalogue-btn-back {
     width: 100%;
     justify-content: center;
   }
+
+  .createcatalogue-container {
+    padding: 16px 12px;
+  }
+
   .createcatalogue-form {
     padding: 24px;
+    border-radius: 10px;
   }
+
+  .createcatalogue-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
   .createcatalogue-actions {
     flex-direction: column;
+    gap: 10px;
   }
+
   .createcatalogue-btn-save,
   .createcatalogue-btn-cancel {
     width: 100%;
   }
+
+  .createcatalogue-group input,
+  .createcatalogue-group select {
+    padding: 10px 12px;
+    font-size: 14px;
+    height: auto;
+  }
+
+  .createcatalogue-group label {
+    font-size: 12px;
+  }
 }
 
+/* Small Mobile: ≤480px */
 @media (max-width: 480px) {
   .createcatalogue-header h1 {
     font-size: 20px;
+    margin-top: 50px
   }
+
   .createcatalogue-form {
     padding: 16px;
+    border-radius: 8px;
   }
-  .createcatalogue-group label {
-    font-size: 12px;
+
+  .createcatalogue-group input,
+  .createcatalogue-group select {
+    padding: 9px 10px;
+    font-size: 13px;
   }
 }

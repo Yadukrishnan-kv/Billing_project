@@ -28,13 +28,7 @@ const AdminHeader = ({
   return (
     <header className="admin-header">
       <div className="header-left">
-        <button
-          className="menu-toggle"
-          onClick={() => setCollapsed(!collapsed)}
-          aria-label="Toggle sidebar"
-        >
-          <FiMenu />
-        </button>
+      
       </div>
 
       <div className="header-right">
