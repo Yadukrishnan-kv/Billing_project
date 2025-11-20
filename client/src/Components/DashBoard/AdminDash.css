@@ -200,14 +200,7 @@ body {
   pointer-events: none;
 }
 
-.menu-item.has-sub::after {
-  content: '>';
-  position: absolute;
-  right: 18px;
-  font-size: 1.25rem;
-  transition: transform 0.3s;
-  font-weight: bold;
-}
+
 
 /* --------------------------------------------------------------
    Main Content

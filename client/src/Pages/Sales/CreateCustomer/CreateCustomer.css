@@ -29,21 +29,23 @@ body[data-theme="dark"] {
   --neutral-900: #f9fafb;
 }
 
-.supplier-form-container {
-  width: 90%;
+.createcustomer-supplier-form-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Mono', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-.form-header {
+.createcustomer-form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   gap: 20px;
 }
 
-.form-header h1 {
+.createcustomer-form-header h1 {
   font-size: 32px;
   font-weight: 700;
   color: var(--neutral-900);
@@ -51,7 +53,7 @@ body[data-theme="dark"] {
   letter-spacing: -0.5px;
 }
 
-.btn-back {
+.createcustomer-btn-back {
   background-color: var(--neutral-100);
   color: var(--neutral-700);
   border: 1.5px solid var(--neutral-200);
@@ -62,15 +64,16 @@ body[data-theme="dark"] {
   cursor: pointer;
   transition: var(--transition);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.btn-back:hover {
+.createcustomer-btn-back:hover {
   background-color: var(--neutral-200);
   border-color: var(--neutral-300);
   transform: translateY(-1px);
 }
 
-.error-message {
+.createcustomer-error-message {
   background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
   color: var(--error-color);
   padding: 14px 16px;
@@ -81,12 +84,11 @@ body[data-theme="dark"] {
   box-shadow: var(--shadow-sm);
 }
 
-.supplier-form {
+.createcustomer-supplier-form {
   background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
   padding: 40px;
-  width: 1200px;
+  width: 100%;
   max-width: 1200px;
-  flex: 0 0 1200px;
   box-sizing: border-box;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
@@ -94,49 +96,31 @@ body[data-theme="dark"] {
   transition: var(--transition);
 }
 
-.supplier-form:hover {
+.createcustomer-supplier-form:hover {
   box-shadow: var(--shadow-xl);
 }
 
-body[data-theme="dark"] .supplier-form {
+body[data-theme="dark"] .createcustomer-supplier-form {
   background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
   border-color: var(--neutral-300);
 }
 
-.form-row {
+.createcustomer-form-row {
   display: grid;
-  grid-template-columns: repeat(2, 3fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 22px;
   margin-bottom: 28px;
 }
 
-.form-group {
+.createcustomer-form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.form-group input,
-.form-group select {
+.createcustomer-form-group input,
+.createcustomer-form-group select {
   width: 100%;
-}
-
-.form-group label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--neutral-700);
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.required {
-  color: var(--error-color);
-  margin-left: 3px;
-}
-
-.form-group input,
-.form-group select {
   padding: 12px 14px;
   border: 1.5px solid var(--neutral-200);
   border-radius: 8px;
@@ -146,33 +130,49 @@ body[data-theme="dark"] .supplier-form {
   color: var(--neutral-900);
   transition: var(--transition);
   height: 44px;
+  min-width: 200px; /* Prevent dropdown truncation */
+  white-space: normal;
 }
 
-body[data-theme="dark"] .form-group input,
-body[data-theme="dark"] .form-group select {
+body[data-theme="dark"] .createcustomer-form-group input,
+body[data-theme="dark"] .createcustomer-form-group select {
   background-color: var(--neutral-200);
   color: var(--neutral-900);
   border-color: var(--neutral-300);
 }
 
-.form-group input::placeholder {
+.createcustomer-form-group input::placeholder {
   color: var(--neutral-300);
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.createcustomer-form-group input:focus,
+.createcustomer-form-group select:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
   background-color: white;
 }
 
-body[data-theme="dark"] .form-group input:focus,
-body[data-theme="dark"] .form-group select:focus {
+body[data-theme="dark"] .createcustomer-form-group input:focus,
+body[data-theme="dark"] .createcustomer-form-group select:focus {
   background-color: var(--neutral-50);
 }
 
-.form-section-title {
+.createcustomer-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--neutral-700);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.createcustomer-required {
+  color: var(--error-color);
+  margin-left: 3px;
+}
+
+.createcustomer-form-section-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--neutral-900);
@@ -183,7 +183,7 @@ body[data-theme="dark"] .form-group select:focus {
   letter-spacing: 0.5px;
 }
 
-.form-actions {
+.createcustomer-form-actions {
   display: flex;
   gap: 14px;
   margin-top: 36px;
@@ -192,8 +192,8 @@ body[data-theme="dark"] .form-group select:focus {
   border-top: 1px solid var(--neutral-200);
 }
 
-.btn-save,
-.btn-cancel {
+.createcustomer-btn-save,
+.createcustomer-btn-cancel {
   padding: 12px 28px;
   border: none;
   border-radius: 8px;
@@ -207,39 +207,39 @@ body[data-theme="dark"] .form-group select:focus {
   justify-content: center;
 }
 
-.btn-save {
+.createcustomer-btn-save {
   background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
-.btn-save:hover:not(:disabled) {
+.createcustomer-btn-save:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4);
 }
 
-.btn-save:active:not(:disabled) {
+.createcustomer-btn-save:active:not(:disabled) {
   transform: translateY(0);
 }
 
-.btn-save:disabled {
+.createcustomer-btn-save:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.btn-cancel {
+.createcustomer-btn-cancel {
   background-color: var(--neutral-100);
   color: var(--neutral-700);
   border: 1.5px solid var(--neutral-200);
   box-shadow: var(--shadow-sm);
 }
 
-.btn-cancel:hover {
+.createcustomer-btn-cancel:hover {
   background-color: var(--neutral-200);
   border-color: var(--neutral-300);
 }
 
-.loading {
+.createcustomer-loading {
   text-align: center;
   padding: 60px 40px;
   color: var(--neutral-600);
@@ -248,7 +248,7 @@ body[data-theme="dark"] .form-group select:focus {
 }
 
 /* Tags Input */
-.tags-input {
+.createcustomer-tags-input {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -260,12 +260,12 @@ body[data-theme="dark"] .form-group select:focus {
   align-items: center;
 }
 
-body[data-theme="dark"] .tags-input {
+body[data-theme="dark"] .createcustomer-tags-input {
   background-color: var(--neutral-200);
   border-color: var(--neutral-300);
 }
 
-.tags-input input {
+.createcustomer-tags-input input {
   border: none;
   outline: none;
   background: transparent;
@@ -274,7 +274,7 @@ body[data-theme="dark"] .tags-input {
   min-width: 120px;
 }
 
-.tag {
+.createcustomer-tag {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   color: #1e40af;
   padding: 6px 12px;
@@ -286,7 +286,7 @@ body[data-theme="dark"] .tags-input {
   gap: 6px;
 }
 
-.tag button {
+.createcustomer-tag button {
   background: none;
   border: none;
   color: #1e40af;
@@ -296,11 +296,11 @@ body[data-theme="dark"] .tags-input {
   line-height: 1;
 }
 
-.checkbox-group {
+.createcustomer-checkbox-group {
   margin: 16px 0;
 }
 
-.checkbox-group label {
+.createcustomer-checkbox-group label {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -309,75 +309,100 @@ body[data-theme="dark"] .tags-input {
   cursor: pointer;
 }
 
-.checkbox-group input[type="checkbox"] {
+.createcustomer-checkbox-group input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: var(--primary-color);
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .supplier-form-container {
-    width: 90%;
-  }
-  .form-row {
-    grid-template-columns: repeat(3, 1fr);
+/* ================ RESPONSIVE ================ */
+
+/* Desktop: ≥1025px — uses default 2-column layout */
+
+/* Tablet: 769px – 1024px */
+@media (max-width: 1024px) {
+  .createcustomer-form-row {
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
   }
 }
 
+/* Tablet: ≤768px */
 @media (max-width: 768px) {
-  .supplier-form-container {
-    width: 95%;
-    padding: 20px 12px;
+  .createcustomer-supplier-form-container {
+    padding: 24px 16px;
   }
-  .form-header {
+
+  .createcustomer-form-header {
     flex-direction: column;
     align-items: stretch;
-    margin-bottom: 30px;
+    gap: 12px;
   }
-  .form-header h1 {
-    font-size: 24px;
-  }
-  .btn-back {
-    width: 100%;
+
+  .createcustomer-form-header h1 {
+    font-size: 26px;
     text-align: center;
   }
-  .form-row {
-    grid-template-columns: repeat(2, 1fr);
+
+  .createcustomer-btn-back {
+    width: 100%;
+  }
+
+  .createcustomer-form-row {
+    grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 20px;
   }
-  .supplier-form {
-    padding: 24px;
+
+  .createcustomer-supplier-form {
+    padding: 28px;
   }
-  .form-actions {
+
+  .createcustomer-form-group select {
+    min-width: 100%;
+  }
+
+  .createcustomer-form-actions {
     flex-direction: column;
     gap: 10px;
   }
-  .btn-save,
-  .btn-cancel {
+
+  .createcustomer-btn-save,
+  .createcustomer-btn-cancel {
     width: 100%;
   }
 }
 
+/* Mobile: ≤480px */
 @media (max-width: 480px) {
-  .form-header h1 {
-    font-size: 20px;
+  .createcustomer-supplier-form-container {
+    padding: 16px 12px;
   }
-  .supplier-form {
-    padding: 16px;
-    border-radius: 8px;
+
+  .createcustomer-form-header h1 {
+    font-size: 22px;
+    margin-top: 30px;
   }
-  .form-group label {
+
+  .createcustomer-supplier-form {
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .createcustomer-form-group label {
     font-size: 12px;
   }
-  .form-group input,
-  .form-group select {
+
+  .createcustomer-form-group input,
+  .createcustomer-form-group select {
     padding: 10px 12px;
+    font-size: 14px;
+    height: auto;
+    min-width: 100%;
   }
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+
+  .createcustomer-form-section-title {
+    font-size: 14px;
+    margin: 28px 0 18px;
   }
 }

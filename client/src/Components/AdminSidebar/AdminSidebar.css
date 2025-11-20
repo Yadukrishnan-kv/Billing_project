@@ -23,32 +23,11 @@
   width: 80px;
 }
 
-/* Logo & Toggle */
+/* Empty logo area */
 .sidebar-logo {
   padding: 20px 16px;
-  display: flex;
-  justify-content: flex-end;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-toggle {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #e2e8f0;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-}
-
-.sidebar-toggle:hover {
-  background: rgba(99, 102, 241, 0.3);
-  transform: scale(1.08);
+  min-height: 72px;
 }
 
 /* Menu */
@@ -68,7 +47,7 @@
   border-radius: 3px;
 }
 
-/* Menu Items */
+/* Main Menu Items */
 .menu-item {
   display: flex;
   align-items: center;
@@ -121,22 +100,9 @@
   transition: opacity 0.3s ease;
 }
 
-.admin-sidebar.collapsed .menu-label,
-.admin-sidebar.collapsed .submenu-arrow {
+.admin-sidebar.collapsed .menu-label {
   opacity: 0;
   pointer-events: none;
-}
-
-.submenu-arrow {
-  margin-left: auto;
-  font-size: 0.95rem;
-  color: #94a3b8;
-  transition: all 0.3s ease;
-}
-
-.menu-item.open .submenu-arrow {
-  transform: rotate(90deg);
-  color: #60a5fa;
 }
 
 /* Submenu */
@@ -181,43 +147,53 @@
   transform: scale(1.4);
 }
 
-/* Hide submenu when collapsed */
 .admin-sidebar.collapsed .submenu {
   display: none;
 }
 
-/* Keyframes */
+/* Animation */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); max-height: 0; }
   to { opacity: 1; transform: translateY(0); max-height: 400px; }
 }
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE - All Devices */
 
-/* Tablet & Mobile - Force collapsed */
-@media (max-width: 1024px) {
+/* Desktop */
+@media (min-width: 1025px) {
   .admin-sidebar {
-    width: 80px !important;
+    width: 260px;
   }
+  .admin-sidebar.collapsed {
+    width: 80px;
+  }
+}
+
+/* Tablet & Mobile - Always collapsed */
+@media (max-width: 1024px) {
+  .admin-sidebar,
   .admin-sidebar.collapsed {
     width: 80px !important;
   }
-  .menu-label, .submenu-arrow, .submenu {
+  .menu-label,
+  .submenu,
+  .submenu-arrow {
     display: none !important;
   }
 }
 
-/* Mobile - Extra small adjustments */
+/* Small Mobile */
 @media (max-width: 480px) {
-  .admin-sidebar {
+  .admin-sidebar,
+  .admin-sidebar.collapsed {
     width: 70px !important;
-  }
-  .sidebar-toggle {
-    width: 36px;
-    height: 36px;
   }
   .menu-item {
     padding: 14px 16px;
     margin: 4px 8px;
   }
+  .menu-icon {
+    font-size: 1.3rem;
+  }
 }
+

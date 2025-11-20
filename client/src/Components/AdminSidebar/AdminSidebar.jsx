@@ -11,7 +11,6 @@ import {
   FiClipboard,
   FiBarChart2,
   FiSettings,
-  
   FiUsers,
   FiFilePlus,
   FiShoppingCart,
@@ -34,7 +33,7 @@ const submenuIcons = {
 };
 
 const menu = [
-  { icon: FiHome, label: 'Dashboard', path: '/admin/dashboard' },
+  { icon: FiHome, label: 'Dashboard', path: '/dashboard' },
   {
     icon: FiShoppingBag,
     label: 'Sales',
@@ -69,7 +68,7 @@ const getSubmenuPath = (parentLabel, subLabel) => {
 const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
   const location = useLocation();
 
-  // Auto-collapse sidebar on mobile when route changes
+  // Auto-collapse on tablet & mobile
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 1024) {
@@ -91,9 +90,8 @@ const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
 
   return (
     <aside className={`admin-sidebar ${collapsed ? 'collapsed' : ''}`}>
-      <div className="sidebar-logo">
-      
-      </div>
+      {/* Empty logo area - as per your request */}
+      <div className="sidebar-logo"></div>
 
       <nav className="sidebar-menu">
         {menu.map((item, idx) => {
@@ -115,19 +113,17 @@ const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
 
           return (
             <div key={idx} className="menu-item-container">
+              {/* Parent menu item - no arrow */}
               <div
                 className={`menu-item has-sub ${isOpen ? 'open' : ''}`}
                 onClick={() => toggleMenu(item.label)}
               >
                 <item.icon className="menu-icon" />
                 {!collapsed && <span className="menu-label">{item.label}</span>}
-                {!collapsed && (
-                  <span className="submenu-arrow">
-                    
-                  </span>
-                )}
+                {/* No arrow icon at all */}
               </div>
 
+              {/* Submenu */}
               {!collapsed && isOpen && (
                 <div className="submenu">
                   {item.sub.map((sub, sidx) => (

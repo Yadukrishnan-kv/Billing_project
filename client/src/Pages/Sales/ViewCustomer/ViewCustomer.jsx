@@ -100,15 +100,15 @@ const CustomerView = () => {
       />
 
       <main className={`admin-content ${collapsed ? 'collapsed' : ''}`}>
-        <div className="details-wrapper">
+        <div className="viewcustomer-details-wrapper">
           {/* Header */}
-          <div className="details-header-card">
-            <div className="header-top">
-              <button className="btn-back" onClick={() => navigate('/admin/sales/Customer')}>
+          <div className="viewcustomer-details-header-card">
+            <div className="viewcustomer-header-top">
+              <button className="viewcustomer-btn-back" onClick={() => navigate('/admin/sales/Customer')}>
                 <FiArrowLeft size={18} /> Back to Customers
               </button>
-              <div className="header-actions">
-                <button className="btn-edit" onClick={handleEdit}>
+              <div className="viewcustomer-header-actions">
+                <button className="viewcustomer-btn-edit" onClick={handleEdit}>
                   <FiEdit2 size={18} /> Edit
                 </button>
               </div>
@@ -116,108 +116,108 @@ const CustomerView = () => {
           </div>
 
           {/* Cards Grid */}
-          <div className="details-grid">
+          <div className="viewcustomer-details-grid">
 
             {/* Basic Information */}
-            <div className="details-card card-blue">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-blue">
+              <div className="viewcustomer-viewcustomer-card-header">
                 <h2>Basic Information</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
-                <div className="detail-row">
-                  <span className="label">Customer Name</span>
-                  <span className="value">{customer.customer}</span>
+              <div className="viewcustomer-card-content">
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Customer Name</span>
+                  <span className="viewcustomer-value">{customer.customer}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Company</span>
-                  <span className="value">{customer.company || '-'}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Company</span>
+                  <span className="viewcustomer-value">{customer.company || '-'}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Tax Type</span>
-                  <span className="value">{customer.taxType}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Tax Type</span>
+                  <span className="viewcustomer-value">{customer.taxType}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">TRN</span>
-                  <span className="value">{customer.trn || '-'}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">TRN</span>
+                  <span className="viewcustomer-value">{customer.trn || '-'}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Place of Supply</span>
-                  <span className="value">{customer.placeOfSupply}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Place of Supply</span>
+                  <span className="viewcustomer-value">{customer.placeOfSupply}</span>
                 </div>
               </div>
             </div>
 
             {/* Contact Information */}
-            <div className="details-card card-teal">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-teal">
+              <div className="viewcustomer-card-header">
                 <h2>Contact Information</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
-                <div className="detail-row">
-                  <span className="label">Email</span>
-                  <span className="value email-value">{customer.email || '-'}</span>
+              <div className="viewcustomer-card-content">
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Email</span>
+                  <span className="viewcustomer-value">{customer.email || '-'}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Phone</span>
-                  <span className="value phone-value">{customer.phone || '-'}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Phone</span>
+                  <span className="viewcustomer-value ">{customer.phone || '-'}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Country</span>
-                  <span className="value">{customer.billingAddress?.country || '-'}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Country</span>
+                  <span className="viewcustomer-value">{customer.billingAddress?.country || '-'}</span>
                 </div>
               </div>
             </div>
 
             {/* Financial Details */}
-            <div className="details-card card-purple">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-purple">
+              <div className="viewcustomer-card-header">
                 <h2>Financial Details</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
-                <div className="detail-row">
-                  <span className="label">Currency</span>
-                  <span className="value">{customer.currency}</span>
+              <div className="viewcustomer-card-content">
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Currency</span>
+                  <span className="viewcustomer-value">{customer.currency}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Payment Terms</span>
-                  <span className="value">{customer.paymentTerms}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Payment Terms</span>
+                  <span className="viewcustomer-value">{customer.paymentTerms}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Tax Method</span>
-                  <span className="value">{customer.taxMethod}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Tax Method</span>
+                  <span className="viewcustomer-value">{customer.taxMethod}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Opening Balance</span>
-                  <span className="value balance-value">{customer.openingBalance}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Opening Balance</span>
+                  <span className="viewcustomer-value ">{customer.openingBalance}</span>
                 </div>
               </div>
             </div>
 
             {/* Catalogue & Tags - FIXED */}
-            <div className="details-card card-orange">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-orange">
+              <div className="viewcustomer-card-header">
                 <h2>Catalogue & Tags</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
-                <div className="detail-row">
-                  <span className="label">Catalogue</span>
-                  <span className="value">
+              <div className="viewcustomer-card-content">
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Catalogue</span>
+                  <span className="viewcustomer-value">
                     {getCatalogueName()}
                   </span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Tags</span>
-                  <div className="value tags-display">
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Tags</span>
+                  <div className="viewcustomer-value viewcustomer-tags-display">
                     {customer.tags && customer.tags.length > 0 ? (
                       customer.tags.map((t, i) => (
-                        <span key={i} className="tag">{t}</span>
+                        <span key={i} className="viewcustomer-tag">{t}</span>
                       ))
                     ) : (
-                      <span className="no-data">No tags</span>
+                      <span className="viewcustomer-no-data">No tags</span>
                     )}
                   </div>
                 </div>
@@ -225,85 +225,85 @@ const CustomerView = () => {
             </div>
 
             {/* Billing Address */}
-            <div className="details-card card-red">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-red">
+              <div className="viewcustomer-card-header">
                 <h2>Billing Address</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
+              <div className="viewcustomer-card-content">
                 {customer.billingAddress ? (
                   <>
-                    <div className="detail-row">
-                      <span className="label">Address</span>
-                      <span className="value">{customer.billingAddress.address || '-'}</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">Address</span>
+                      <span className="viewcustomer-value">{customer.billingAddress.address || '-'}</span>
                     </div>
-                    <div className="detail-row">
-                      <span className="label">City</span>
-                      <span className="value">{customer.billingAddress.city || '-'}</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">City</span>
+                      <span className="viewcustomer-value">{customer.billingAddress.city || '-'}</span>
                     </div>
-                    <div className="detail-row">
-                      <span className="label">State/Region</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">State/Region</span>
                       <span className="value">{customer.billingAddress.stateRegion || '-'}</span>
                     </div>
-                    <div className="detail-row">
-                      <span className="label">ZIP Code</span>
-                      <span className="value">{customer.billingAddress.zipPostalCode || '-'}</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">ZIP Code</span>
+                      <span className="viewcustomer-value">{customer.billingAddress.zipPostalCode || '-'}</span>
                     </div>
                   </>
                 ) : (
-                  <p className="no-data">No billing address</p>
+                  <p className="viewcustomer-no-data">No billing address</p>
                 )}
               </div>
             </div>
 
             {/* Shipping Address */}
-            <div className="details-card card-indigo">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-indigo">
+              <div className="viewcustomer-card-header">
                 <h2>Shipping Address</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
+              <div className="viewcustomer-card-content">
                 {customer.shippingAddress?.sameAsBilling ? (
-                  <p className="same-as-text">Same as billing address</p>
+                  <p className="viewcustomer-same-as-text">Same as billing address</p>
                 ) : customer.shippingAddress ? (
                   <>
-                    <div className="detail-row">
-                      <span className="label">Contact</span>
-                      <span className="value">{customer.shippingAddress.contactPerson || '-'}</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">Contact</span>
+                      <span className="viewcustomer-value">{customer.shippingAddress.contactPerson || '-'}</span>
                     </div>
-                    <div className="detail-row">
-                      <span className="label">Phone</span>
-                      <span className="value">{customer.shippingAddress.phone || '-'}</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">Phone</span>
+                      <span className="viewcustomer-value">{customer.shippingAddress.phone || '-'}</span>
                     </div>
-                    <div className="detail-row">
-                      <span className="label">Address</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">Address</span>
                       <span className="value">{customer.shippingAddress.address || '-'}</span>
                     </div>
-                    <div className="detail-row">
-                      <span className="label">City</span>
-                      <span className="value">{customer.shippingAddress.city || '-'}</span>
+                    <div className="viewcustomer-detail-row">
+                      <span className="viewcustomer-label">City</span>
+                      <span className="viewcustomer-value">{customer.shippingAddress.city || '-'}</span>
                     </div>
                   </>
                 ) : (
-                  <p className="no-data">No shipping address</p>
+                  <p className="viewcustomer-no-data">No shipping address</p>
                 )}
               </div>
             </div>
 
             {/* Additional Info */}
-            <div className="details-card card-indigo">
-              <div className="card-header">
+            <div className="viewcustomer-details-card viewcustomer-card-indigo">
+              <div className="viewcustomer-card-header">
                 <h2>Additional Info</h2>
-                <div className="header-accent"></div>
+                <div className="viewcustomer-header-accent"></div>
               </div>
-              <div className="card-content">
-                <div className="detail-row">
-                  <span className="label">Created</span>
-                  <span className="value">{new Date(customer.createdAt).toLocaleDateString()}</span>
+              <div className="viewcustomer-card-content">
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Created</span>
+                  <span className="viewcustomer-value">{new Date(customer.createdAt).toLocaleDateString()}</span>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Last Updated</span>
-                  <span className="value">{new Date(customer.updatedAt).toLocaleDateString()}</span>
+                <div className="viewcustomer-detail-row">
+                  <span className="viewcustomer-label">Last Updated</span>
+                  <span className="viewcustomer-value">{new Date(customer.updatedAt).toLocaleDateString()}</span>
                 </div>
               </div>
             </div>

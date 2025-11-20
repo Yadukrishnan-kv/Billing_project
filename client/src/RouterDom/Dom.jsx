@@ -33,7 +33,7 @@ function Dom() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
 
           <Route path="/dashboard" element={<AdminDash />} />
           <Route path="/admin/sales/Customer" element={<CustomerList />} />

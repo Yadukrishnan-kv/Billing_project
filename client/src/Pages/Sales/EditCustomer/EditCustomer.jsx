@@ -234,27 +234,27 @@ const CustomerEdit = () => {
         setOpenMenu={setOpenMenu}
       />
       <main className={`admin-content ${collapsed ? 'collapsed' : ''}`}>
-        <div className="supplier-form-container">
+        <div className="createcustomer-supplier-form-container">
           {/* ---------- HEADER ---------- */}
-          <div className="form-header">
+          <div className="createcustomer-form-header">
             <h1>Edit Customer</h1>
-            <button className="btn-back" onClick={() => navigate('/admin/sales/Customer')}>
+            <button className="createcustomer-btn-back" onClick={() => navigate('/admin/sales/Customer')}>
               Back
             </button>
           </div>
 
-          {error && <div className="error-message">{error}</div>}
+          {error && <div className="createcustomer-error-message">{error}</div>}
 
           {loading ? (
-            <div className="loading">Loading…</div>
+            <div className="createcustomer-loading">Loading…</div>
           ) : (
-            <form onSubmit={handleSubmit} className="supplier-form">
+            <form onSubmit={handleSubmit} className="createcustomer-supplier-form">
 
               {/* ==== CUSTOMER INFORMATION ==== */}
-              <div className="form-section-title">Customer Information</div>
+              <div className="createcustomer-form-section-title">Customer Information</div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="customer">Customer <span className="required">*</span></label>
                   <input
                     id="customer"
@@ -265,7 +265,7 @@ const CustomerEdit = () => {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="currency">Currency</label>
                   <select
                     id="currency"
@@ -281,8 +281,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="company">Company</label>
                   <input
                     id="company"
@@ -292,7 +292,7 @@ const CustomerEdit = () => {
                     placeholder="Enter company name"
                   />
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="tags">Tags</label>
                   <div className="tags-input">
                     {form.tags.map((tag) => (
@@ -313,8 +313,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="taxType">Tax Type</label>
                   <select
                     id="taxType"
@@ -331,7 +331,7 @@ const CustomerEdit = () => {
                     <option>Non-GCC</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="paymentTerms">Payment Terms</label>
                   <select
                     id="paymentTerms"
@@ -353,8 +353,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="placeOfSupply">Place of Supply</label>
                   <select
                     id="placeOfSupply"
@@ -371,7 +371,7 @@ const CustomerEdit = () => {
                     <option>Umm Al Quwain</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="openingBalance">Opening Balance</label>
                   <select
                     id="openingBalance"
@@ -386,8 +386,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="trn">TRN</label>
                   <input
                     id="trn"
@@ -397,7 +397,7 @@ const CustomerEdit = () => {
                     placeholder="Enter TRN"
                   />
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="taxMethod">Tax Method</label>
                   <select
                     id="taxMethod"
@@ -411,8 +411,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="email">Email</label>
                   <input
                     id="email"
@@ -423,8 +423,8 @@ const CustomerEdit = () => {
                     placeholder="Enter email"
                   />
                 </div>
-              <div className="form-group">
-                  <label>Catalogue <span className="required">*</span></label>
+              <div className="createcustomer-form-group">
+                  <label>Catalogue <span className="createcustomer-required">*</span></label>
                   <select name="catalogue" value={form.catalogue || ''} onChange={handleChange} required disabled={catalogueLoading}>
                     {catalogueLoading ? (
                       <option>Loading catalogues...</option>
@@ -444,8 +444,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="secondaryEmail">Secondary Email</label>
                   <input
                     id="secondaryEmail"
@@ -456,7 +456,7 @@ const CustomerEdit = () => {
                     placeholder="Enter secondary email"
                   />
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="assignStaff">Assign Staff</label>
                   <input
                     id="assignStaff"
@@ -468,8 +468,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="phone">Phone</label>
                   <input
                     id="phone"
@@ -482,10 +482,10 @@ const CustomerEdit = () => {
               </div>
 
               {/* ==== BILLING ADDRESS ==== */}
-              <div className="form-section-title">Billing Address</div>
+              <div className="createcustomer-form-section-title">Billing Address</div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="billingAddress.address">Address</label>
                   <input
                     id="billingAddress.address"
@@ -497,8 +497,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="billingAddress.city">City</label>
                   <input
                     id="billingAddress.city"
@@ -508,7 +508,7 @@ const CustomerEdit = () => {
                     placeholder="Enter city"
                   />
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="billingAddress.stateRegion">State/Region</label>
                   <input
                     id="billingAddress.stateRegion"
@@ -520,8 +520,8 @@ const CustomerEdit = () => {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label htmlFor="billingAddress.zipPostalCode">ZIP/Postal Code</label>
                   <input
                     id="billingAddress.zipPostalCode"
@@ -531,7 +531,7 @@ const CustomerEdit = () => {
                     placeholder="Enter ZIP code"
                   />
                 </div>
-                <div className="form-group">
+                <div className="createcustomer-form-group">
                   <label htmlFor="billingAddress.country">Country</label>
                   <select
                     id="billingAddress.country"
@@ -739,10 +739,10 @@ const CustomerEdit = () => {
               </div>
 
               {/* ==== SHIPPING ADDRESS ==== */}
-              <div className="form-section-title">Shipping Address</div>
+              <div className="createcustomer-form-section-title">Shipping Address</div>
 
-              <div className="form-row">
-                <div className="form-group">
+              <div className="createcustomer-form-row">
+                <div className="createcustomer-form-group">
                   <label>
                     <input
                       type="checkbox"
@@ -757,8 +757,8 @@ const CustomerEdit = () => {
 
               {!form.shippingAddress.sameAsBilling && (
                 <>
-                  <div className="form-row">
-                    <div className="form-group">
+                  <div className="createcustomer-form-row">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.contactPerson">Contact Person</label>
                       <input
                         id="shippingAddress.contactPerson"
@@ -768,7 +768,7 @@ const CustomerEdit = () => {
                         placeholder="Enter contact person"
                       />
                     </div>
-                    <div className="form-group">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.phone">Phone</label>
                       <input
                         id="shippingAddress.phone"
@@ -780,8 +780,8 @@ const CustomerEdit = () => {
                     </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="form-group">
+                  <div className="createcustomer-form-row">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.address">Address</label>
                       <input
                         id="shippingAddress.address"
@@ -793,8 +793,8 @@ const CustomerEdit = () => {
                     </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="form-group">
+                  <div className="createcustomer-form-row">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.city">City</label>
                       <input
                         id="shippingAddress.city"
@@ -804,7 +804,7 @@ const CustomerEdit = () => {
                         placeholder="Enter city"
                       />
                     </div>
-                    <div className="form-group">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.stateRegion">State/Region</label>
                       <input
                         id="shippingAddress.stateRegion"
@@ -816,8 +816,8 @@ const CustomerEdit = () => {
                     </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="form-group">
+                  <div className="createcustomer-form-row">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.zipPostalCode">ZIP/Postal Code</label>
                       <input
                         id="shippingAddress.zipPostalCode"
@@ -827,7 +827,7 @@ const CustomerEdit = () => {
                         placeholder="Enter ZIP code"
                       />
                     </div>
-                    <div className="form-group">
+                    <div className="createcustomer-form-group">
                       <label htmlFor="shippingAddress.country">Country</label>
                       <select
                         id="shippingAddress.country"
@@ -1038,13 +1038,13 @@ const CustomerEdit = () => {
               )}
 
               {/* ==== ACTIONS ==== */}
-              <div className="form-actions">
-                <button type="submit" className="btn-save" disabled={saving}>
+              <div className="createcustomer-form-actions">
+                <button type="submit" className="createcustomer-btn-save" disabled={saving}>
                   {saving ? 'Saving...' : 'Save Changes'}
                 </button>
                 <button
                   type="button"
-                  className="btn-cancel"
+                  className="createcustomer-btn-cancel"
                   onClick={() => navigate(-1)}
                 >
                   Cancel

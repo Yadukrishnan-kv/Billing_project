@@ -4,30 +4,35 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdminHeader from '../AdminHeader/AdminHeader';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
-import '../DashBoard/AdminDash.css';
+import './AdminDash.css'; // Make sure path is correct
 import { FiDollarSign, FiPackage, FiShoppingBag, FiUser } from 'react-icons/fi';
 
-const AdminDash = () => {                 // renamed to match file name
- const [collapsed, setCollapsed] = useState(false);
+const AdminDash = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const [user, setUser] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
-  const backendUrl = process.env.REACT_APP_BACKEND_IP;
+  const backendUrl = process.env.REACT_APP_BACKEND_IP || 'http://localhost:5000';
 
-  // ---------- DARK MODE ----------
+  // Auto-collapse sidebar on mobile/tablet
   useEffect(() => {
-    document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
-  }, [darkMode]);
+    const handleResize = () => {
+      setCollapsed(window.innerWidth <= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  // ---------- FETCH USER ----------
+  // Fetch logged-in user
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/');
       return;
     }
+
     axios
       .get(`${backendUrl}/api/admin/viewloginedprofile`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -39,22 +44,22 @@ const AdminDash = () => {                 // renamed to match file name
       });
   }, [navigate, backendUrl]);
 
-  if (!user) return <div className="loading">Loading…</div>;
+  if (!user) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <div className="admin-layout">
-      {/* ---------- HEADER ---------- */}
+      {/* Header */}
       <AdminHeader
         user={user}
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
         dropdownOpen={dropdownOpen}
         setDropdownOpen={setDropdownOpen}
         collapsed={collapsed}
         setCollapsed={setCollapsed}
       />
 
-      {/* ---------- SIDEBAR ---------- */}
+      {/* Sidebar */}
       <AdminSidebar
         collapsed={collapsed}
         setCollapsed={setCollapsed}
@@ -62,19 +67,22 @@ const AdminDash = () => {                 // renamed to match file name
         setOpenMenu={setOpenMenu}
       />
 
-      {/* ---------- MAIN CONTENT ---------- */}
+      {/* Main Content */}
       <main className={`admin-content ${collapsed ? 'collapsed' : ''}`}>
         <div className="welcome-wrapper">
-          <h1 className="welcome-title">Welcome to {user.role || 'Dashboard'}</h1>
+          <h1 className="welcome-title">
+            Welcome to {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'Dashboard'}
+          </h1>
           <p className="admin-note">
             You are logged in as <strong>{user.username}</strong> — manage your business with full control.
           </p>
         </div>
 
-       
+        {/* Optional: Add stats grid later */}
+        {/* <div className="dashboard-grid">...</div> */}
       </main>
     </div>
   );
 };
 
-export default AdminDash;   // match the file name
+export default AdminDash;

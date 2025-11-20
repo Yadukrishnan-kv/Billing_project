@@ -205,11 +205,11 @@ useEffect(() => {
         setOpenMenu={setOpenMenu}
       />
       <main className={`admin-content ${collapsed ? "collapsed" : ""}`}>
-        <div className="supplier-form-container">
-          <div className="form-header">
+        <div className="createcustomer-supplier-form-container">
+          <div className="createcustomer-form-header">
             <h1>Create New Customer</h1>
             <button
-              className="btn-back"
+              className="createcustomer-btn-back"
               onClick={() => navigate("/admin/sales/Customer")}
             >
               ← Back
@@ -218,13 +218,13 @@ useEffect(() => {
 
           {error && <div className="error-message">{error}</div>}
 
-          <form onSubmit={handleSubmit} className="supplier-form">
+          <form onSubmit={handleSubmit} className="createcustomer-supplier-form">
             {/* ==== Customer Information ==== */}
-            <div className="form-section-title">Customer Information</div>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="customer">
-                  Customer <span className="required">*</span>
+            <div className="createcustomer-form-section-title">Customer Information</div>
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
+                <label htmlFor="createcustomer-customer">
+                  Customer <span className="createcustomer-required">*</span>
                 </label>
                 <input
                   id="customer"
@@ -235,7 +235,7 @@ useEffect(() => {
                   required
                 />
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="currency">Currency</label>
                 <select
                   id="currency"
@@ -251,8 +251,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="company">Company</label>
                 <input
                   id="company"
@@ -262,11 +262,11 @@ useEffect(() => {
                   placeholder="Enter company name"
                 />
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="tags">Tags</label>
                 <div className="tags-input">
                   {formData.tags.map((tag) => (
-                    <span key={tag} className="tag">
+                    <span key={tag} className="createcustomer-tag">
                       {tag}{" "}
                       <button type="button" onClick={() => removeTag(tag)}>
                         ×
@@ -281,8 +281,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="taxType">Tax Type</label>
                 <select
                   id="taxType"
@@ -305,7 +305,7 @@ useEffect(() => {
                   <option value="Non-GCC">Non-GCC</option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="paymentTerms">Payment Terms</label>
                 <select
                   id="paymentTerms"
@@ -327,8 +327,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="placeOfSupply">Place of Supply</label>
                 <select
                   id="placeOfSupply"
@@ -345,7 +345,7 @@ useEffect(() => {
                   <option value="Umm Al Quwain">Umm Al Quwain</option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="openingBalance">Opening Balance</label>
                 <select
                   id="openingBalance"
@@ -362,8 +362,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="trn">TRN</label>
                 <input
                   id="trn"
@@ -373,7 +373,7 @@ useEffect(() => {
                   placeholder="Enter TRN"
                 />
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="taxMethod">Tax Method</label>
                 <select
                   id="taxMethod"
@@ -387,8 +387,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
@@ -399,9 +399,9 @@ useEffect(() => {
                   placeholder="Enter email"
                 />
               </div>
-       <div className="form-group">
+       <div className="createcustomer-form-group">
   <label htmlFor="catalogue">
-    Catalogue <span className="required">*</span>
+    Catalogue <span className="createcustomer-required">*</span>
   </label>
   <select
     id="catalogue"
@@ -429,8 +429,8 @@ useEffect(() => {
 </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="secondaryEmail">Secondary Email</label>
                 <input
                   id="secondaryEmail"
@@ -441,7 +441,7 @@ useEffect(() => {
                   placeholder="Enter secondary email"
                 />
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="assignStaff">Assign Staff</label>
                 <input
                   id="assignStaff"
@@ -453,8 +453,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="phone">Phone</label>
                 <input
                   id="phone"
@@ -467,9 +467,9 @@ useEffect(() => {
             </div>
 
             {/* ==== Billing Address ==== */}
-            <div className="form-section-title">Billing Address</div>
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-section-title">Billing Address</div>
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="billingAddress.address">Address</label>
                 <input
                   id="billingAddress.address"
@@ -481,8 +481,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="billingAddress.city">City</label>
                 <input
                   id="billingAddress.city"
@@ -492,7 +492,7 @@ useEffect(() => {
                   placeholder="Enter city"
                 />
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="billingAddress.stateRegion">State/Region</label>
                 <input
                   id="billingAddress.stateRegion"
@@ -504,8 +504,8 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label htmlFor="billingAddress.zipPostalCode">
                   ZIP/Postal Code
                 </label>
@@ -517,7 +517,7 @@ useEffect(() => {
                   placeholder="Enter ZIP code"
                 />
               </div>
-              <div className="form-group">
+              <div className="createcustomer-form-group">
                 <label htmlFor="billingAddress.country">Country</label>
                 <select
                   id="billingAddress.country"
@@ -726,9 +726,9 @@ useEffect(() => {
             </div>
 
             {/* ==== Shipping Address ==== */}
-            <div className="form-section-title">Shipping Address</div>
-            <div className="form-row">
-              <div className="form-group">
+            <div className="createcustomer-form-section-title">Shipping Address</div>
+            <div className="createcustomer-form-row">
+              <div className="createcustomer-form-group">
                 <label>
                   <input
                     type="checkbox"
@@ -743,8 +743,8 @@ useEffect(() => {
 
             {!formData.shippingAddress.sameAsBilling && (
               <>
-                <div className="form-row">
-                  <div className="form-group">
+                <div className="createcustomer-form-row">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.contactPerson">
                       Contact Person
                     </label>
@@ -756,7 +756,7 @@ useEffect(() => {
                       placeholder="Enter contact person"
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.phone">Phone</label>
                     <input
                       id="shippingAddress.phone"
@@ -768,8 +768,8 @@ useEffect(() => {
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
+                <div className="createcustomer-form-row">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.address">Address</label>
                     <input
                       id="shippingAddress.address"
@@ -781,8 +781,8 @@ useEffect(() => {
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
+                <div className="createcustomer-form-row">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.city">City</label>
                     <input
                       id="shippingAddress.city"
@@ -792,7 +792,7 @@ useEffect(() => {
                       placeholder="Enter city"
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.stateRegion">
                       State/Region
                     </label>
@@ -806,8 +806,8 @@ useEffect(() => {
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
+                <div className="createcustomer-form-row">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.zipPostalCode">
                       ZIP/Postal Code
                     </label>
@@ -819,7 +819,7 @@ useEffect(() => {
                       placeholder="Enter ZIP code"
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="createcustomer-form-group">
                     <label htmlFor="shippingAddress.country">Country</label>
                     <select
                       id="shippingAddress.country"
@@ -1031,13 +1031,13 @@ useEffect(() => {
             )}
 
             {/* ==== Actions ==== */}
-            <div className="form-actions">
-              <button type="submit" className="btn-save" disabled={loading}>
+            <div className="createcustomer-form-actions">
+              <button type="submit" className="createcustomer-btn-save" disabled={loading}>
                 {loading ? "Creating..." : "Save"}
               </button>
               <button
                 type="button"
-                className="btn-cancel"
+                className="createcustomer-btn-cancel"
                 onClick={() => navigate("/admin/sales/Customer")}
               >
                 Cancel
