@@ -7,39 +7,29 @@ const generateToken = (id, email, role) => {
   return jwt.sign({ id, email, role }, process.env.JWT_KEY, { expiresIn: "30d" });
 };
 
-
 const registerAdmin = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
 
-    // Check if admin with email already exists
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
       return res.status(400).json({ message: "Admin with this email already exists" });
     }
 
-    // Hash password
-     const hashedPassword = await bcrypt.hash(password, 10)
-
-    // Create new admin
     const newAdmin = await Admin.create({
       username,
       email,
-      password: hashedPassword,
+      password, // ← Let pre-save hook hash it
       role: role || "admin",
     });
 
-    if (newAdmin) {
-      res.status(201).json({
-        _id: newAdmin._id,
-        username: newAdmin.username,
-        email: newAdmin.email,
-        role: newAdmin.role,
-        token: generateToken(newAdmin._id, newAdmin.email, newAdmin.role),
-      });
-    } else {
-      res.status(400).json({ message: "Invalid admin data provided" });
-    }
+    res.status(201).json({
+      _id: newAdmin._id,
+      username: newAdmin.username,
+      email: newAdmin.email,
+      role: newAdmin.role,
+      token: generateToken(newAdmin._id, newAdmin.email, newAdmin.role),
+    });
   } catch (error) {
     console.error("Registration error:", error);
     res.status(500).json({ message: "Server error during registration" });

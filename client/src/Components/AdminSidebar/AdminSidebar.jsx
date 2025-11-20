@@ -1,5 +1,5 @@
 // src/components/admin/AdminSidebar.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   FiHome,
@@ -11,10 +11,7 @@ import {
   FiClipboard,
   FiBarChart2,
   FiSettings,
-  FiChevronRight,
-  FiChevronDown,
-  FiMenu,
-  // Submenu icons
+  
   FiUsers,
   FiFilePlus,
   FiShoppingCart,
@@ -23,17 +20,16 @@ import {
   FiLayers,
   FiBookOpen,
 } from 'react-icons/fi';
-import '../DashBoard/AdminDash.css';
 
 const submenuIcons = {
   Customer: <FiUsers />,
-  'Sales invoice': <FiFilePlus />,
+  Invoices: <FiFilePlus />,
   'Sales Order': <FiShoppingCart />,
   Suppliers: <FiTruck />,
-  'Purchase Bill': <FiFileText />,   // <-- FiBill does NOT exist
+  'Purchase-Bill': <FiFileText />,
   'Purchase Order': <FiPackage />,
   Inventory: <FiBox />,
-  'Item Group': <FiLayers />,
+  'Item-Group': <FiLayers />,
   Catalogue: <FiBookOpen />,
 };
 
@@ -66,13 +62,29 @@ const menu = [
 
 const getSubmenuPath = (parentLabel, subLabel) => {
   const base = menu.find((m) => m.label === parentLabel)?.basePath;
-  return `${base}/${subLabel.toLowerCase().replace(/\s+/g, '-')}`;
+  const cleanSub = subLabel.toLowerCase().replace(/\s+/g, '-');
+  return `${base}/${cleanSub}`;
 };
 
 const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
   const location = useLocation();
 
-  const toggleMenu = (label) => setOpenMenu(openMenu === label ? null : label);
+  // Auto-collapse sidebar on mobile when route changes
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1024) {
+        setCollapsed(true);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [setCollapsed]);
+
+  const toggleMenu = (label) => {
+    setOpenMenu(openMenu === label ? null : label);
+  };
+
   const isActive = (path) => location.pathname === path;
   const isSubmenuActive = (parent, sub) =>
     location.pathname.startsWith(getSubmenuPath(parent, sub));
@@ -80,9 +92,7 @@ const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
   return (
     <aside className={`admin-sidebar ${collapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-logo">
-        <button className="sidebar-toggle" onClick={() => setCollapsed(!collapsed)}>
-          <FiMenu />
-        </button>
+      
       </div>
 
       <nav className="sidebar-menu">
@@ -93,6 +103,7 @@ const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
                 key={idx}
                 to={item.path}
                 className={`menu-item ${isActive(item.path) ? 'active' : ''}`}
+                style={{ textDecoration: 'none' }}
               >
                 <item.icon className="menu-icon" />
                 {!collapsed && <span className="menu-label">{item.label}</span>}
@@ -100,35 +111,36 @@ const AdminSidebar = ({ collapsed, setCollapsed, openMenu, setOpenMenu }) => {
             );
           }
 
+          const isOpen = openMenu === item.label;
+
           return (
             <div key={idx} className="menu-item-container">
               <div
-                className={`menu-item has-sub ${openMenu === item.label ? 'open' : ''}`}
+                className={`menu-item has-sub ${isOpen ? 'open' : ''}`}
                 onClick={() => toggleMenu(item.label)}
               >
                 <item.icon className="menu-icon" />
                 {!collapsed && <span className="menu-label">{item.label}</span>}
                 {!collapsed && (
-                  openMenu === item.label ? (
-                    <FiChevronDown className="submenu-arrow" />
-                  ) : (
-                    <FiChevronRight className="submenu-arrow" />
-                  )
+                  <span className="submenu-arrow">
+                    
+                  </span>
                 )}
               </div>
 
-              {!collapsed && openMenu === item.label && (
+              {!collapsed && isOpen && (
                 <div className="submenu">
                   {item.sub.map((sub, sidx) => (
                     <Link
                       key={sidx}
                       to={getSubmenuPath(item.label, sub)}
                       className={`submenu-item ${isSubmenuActive(item.label, sub) ? 'active' : ''}`}
+                      style={{ textDecoration: 'none' }}
                     >
                       {submenuIcons[sub] && (
                         <span className="submenu-icon">{submenuIcons[sub]}</span>
                       )}
-                      {sub}
+                      <span>{sub}</span>
                     </Link>
                   ))}
                 </div>
