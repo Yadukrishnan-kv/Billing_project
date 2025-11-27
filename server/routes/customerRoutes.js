@@ -16,5 +16,7 @@ router.put('/updateCustomer/:id', customerController.updateCustomer);
 
 // DELETE customer
 router.delete('/deleteCustomer/:id', customerController.deleteCustomer);
+// At the top with other routes
+router.get('/exportCustomers', customerController.exportCustomers);
 
 module.exports = router;

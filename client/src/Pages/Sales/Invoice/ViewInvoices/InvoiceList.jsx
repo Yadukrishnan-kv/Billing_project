@@ -168,27 +168,30 @@ function InvoiceList() {
     setViewSettingsDropdownOpen(false);
   };
 
-  const handleExport = () => {
-    const csvContent = [
-      ['ID', 'Title', 'Customer', 'Status', 'Date', 'Total'],
-      ...filteredInvoices.map(inv => [
-        inv._id.slice(-6).toUpperCase(),
-        inv.title,
-        inv.customer?.company || '',
-        inv.status || '',
-        new Date(inv.date).toLocaleDateString(),
-        inv.total || ''
-      ])
-    ].map(row => row.join(',')).join('\n');
+ const handleExport = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${BACKEND_URL}/api/invoices/exportInvoices`, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: 'blob' // Critical: treat as binary file
+    });
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'invoices.csv';
-    a.click();
+    // Create file download
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'invoices.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
     window.URL.revokeObjectURL(url);
-  };
+  } catch (err) {
+    console.error('Export failed:', err);
+    setError('Failed to export invoices. Please try again.');
+    // Optional: show alert
+    alert('Export failed. Please try again.');
+  }
+};
 
   const handleSort = (key) => {
     let direction = 'asc';
@@ -216,6 +219,28 @@ function InvoiceList() {
   };
 
   if (!user) return <div className="invoiceList-loading">Loading…</div>;
+
+const handleDownloadPDF = async (id) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${BACKEND_URL}/api/invoices/downloadInvoicePDF/${id}/download`, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: 'blob', // Critical: treat as binary file
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `invoice_${id}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('Download failed:', err);
+    setError('Failed to download invoice. Please try again.');
+    alert('Download failed. Please try again.');
+  }
+};
 
   return (
     <div className="admin-layout">
@@ -378,6 +403,13 @@ function InvoiceList() {
                               >
                                 <AiOutlineDelete />
                               </button>
+                               <button
+    className="invoiceList-btnAction invoiceList-btnDownload"
+    onClick={() => handleDownloadPDF(invoice._id)}
+    title="Download PDF"
+  >
+    <FiDownload />
+  </button>
                             </td>
                           </tr>
                         ))

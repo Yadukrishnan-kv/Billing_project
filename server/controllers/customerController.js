@@ -1,5 +1,6 @@
 const Customer = require('../models/Customer');
 const { validationResult } = require('express-validator');
+const XLSX = require('xlsx');
 
 // Create a new customer
 const createCustomer = async (req, res) => {
@@ -130,11 +131,68 @@ const deleteCustomer = async (req, res) => {
     });
   }
 };
+const exportCustomers = async (req, res) => {
+  try {
+    const customers = await Customer.find().populate("catalogue", "name");
+
+    // Map to desired columns
+    const worksheetData = customers.map(c => ({
+      'ID': c.customerId || '',
+      'Customer Name': c.customer || '',
+      'Company': c.company || '',
+      'Email': c.email || '',
+      'Secondary Email': c.secondaryEmail || '',
+      'Phone': c.phone || '',
+      'TRN': c.trn || '',
+      'Catalogue': c.catalogue?.name || '',
+      'Currency': c.currency || '',
+      'Tags': Array.isArray(c.tags) ? c.tags.join(', ') : '',
+      'Payment Terms': c.paymentTerms || '',
+      'Tax Type': c.taxType || '',
+      'Place of Supply': c.placeOfSupply || '',
+      'Assign Staff': c.assignStaff || '',
+      'Opening Balance': c.openingBalance || '',
+      'Tax Method': c.taxMethod || '',
+      'Billing Address': c.billingAddress?.address || '',
+      'Billing City': c.billingAddress?.city || '',
+      'Billing State': c.billingAddress?.stateRegion || '',
+      'Billing ZIP': c.billingAddress?.zipPostalCode || '',
+      'Billing Country': c.billingAddress?.country || '',
+      'Shipping Same as Billing': c.shippingAddress?.sameAsBilling ? 'Yes' : 'No',
+      'Shipping Contact': c.shippingAddress?.contactPerson || '',
+      'Shipping Address': c.shippingAddress?.address || '',
+      'Shipping City': c.shippingAddress?.city || '',
+      'Shipping State': c.shippingAddress?.stateRegion || '',
+      'Shipping ZIP': c.shippingAddress?.zipPostalCode || '',
+      'Shipping Country': c.shippingAddress?.country || '',
+      'Shipping Phone': c.shippingAddress?.phone || '',
+      'Created At': c.createdAt ? new Date(c.createdAt).toLocaleString() : '',
+      'Updated At': c.updatedAt ? new Date(c.updatedAt).toLocaleString() : ''
+    }));
+
+    // Create workbook and worksheet
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Customers');
+
+    // Generate buffer
+    const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+    // Set headers for file download
+    res.setHeader('Content-Disposition', 'attachment; filename=customers.xlsx');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.send(buffer);
+  } catch (error) {
+    console.error('Error exporting customers:', error);
+    res.status(500).json({ success: false, message: 'Failed to export customers' });
+  }
+};
 
 module.exports = {
   createCustomer,
   getCustomers, 
   getCustomerById,
   updateCustomer,
-  deleteCustomer
+  deleteCustomer,
+  exportCustomers
 };

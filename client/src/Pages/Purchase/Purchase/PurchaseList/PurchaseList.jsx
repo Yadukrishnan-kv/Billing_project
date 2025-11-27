@@ -170,29 +170,29 @@ function PurchaseList() {
     setViewSettingsDropdownOpen(false);
   };
 
-  const handleExport = () => {
-    const csvContent = [
-      ['Bill No', 'Title', 'Supplier', 'Status', 'Date', 'Subtotal', 'Discount', 'Total'],
-      ...filteredPurchases.map(pur => [
-        pur.billNumber || pur._id.slice(-6).toUpperCase(),
-        pur.title,
-        pur.supplier?.companyName || '',
-        pur.status || '',
-        new Date(pur.date).toLocaleDateString(),
-        pur.subtotal?.toFixed(2) || '0.00',
-        pur.discountAmount?.toFixed(2) || '0.00',
-        pur.total?.toFixed(2) || '0.00'
-      ])
-    ].map(row => row.join(',')).join('\n');
+const handleExport = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${BACKEND_URL}/api/purchases/exportPurchases`, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: 'blob' // Critical: treat as binary file
+    });
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'purchases.csv';
-    a.click();
+    // Create file download
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'purchases.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
     window.URL.revokeObjectURL(url);
-  };
+  } catch (err) {
+    console.error('Export failed:', err);
+    setError('Failed to export purchases. Please try again.');
+    alert('Export failed. Please try again.');
+  }
+};
 
   const handleSort = (key) => {
     let direction = 'asc';

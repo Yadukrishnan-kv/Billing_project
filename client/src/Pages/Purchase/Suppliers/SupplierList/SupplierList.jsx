@@ -162,30 +162,29 @@ function SupplierList() {
   const handleEdit = (id) => navigate(`/admin/purchase/Suppliers/edit/${id}`);
   const handleCreateNew = () => navigate('/admin/purchase/Suppliers/createSupplier');
 
-  const handleExport = () => {
-    const csvContent = [
-      ['ID', 'Name', 'Company', 'Email', 'Phone', 'TRN', 'Catalogue', 'Currency', 'Tags'],
-      ...sortedSuppliers.map(s => [
-        getSupplierId(s),
-        s.supplierName,
-        s.company || '',
-        s.email || '',
-        s.phone || '',
-        s.trn || '',
-        getCatalogueName(s.catalogue),
-        s.currency || '',
-        s.tags || ''
-      ])
-    ].map(row => row.join(',')).join('\n');
+  const handleExport = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${BACKEND_URL}/api/suppliers/exportSuppliers`, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: 'blob' // Critical: treat as binary file
+    });
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'suppliers.csv';
-    a.click();
+    // Create file download
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'suppliers.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
     window.URL.revokeObjectURL(url);
-  };
+  } catch (err) {
+    console.error('Export failed:', err);
+    setError('Failed to export suppliers. Please try again.');
+    alert('Export failed. Please try again.');
+  }
+};
 
   const handleSort = (key) => {
     let direction = 'asc';

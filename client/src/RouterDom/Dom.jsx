@@ -26,6 +26,7 @@ import CreateCatalogue from "../Pages/Catalogue/CreateCatalogue/CreateCatalogue"
 import CatalogueList from "../Pages/Catalogue/CatalogueList/CatalogueList";
 import ViewCatalogue from "../Pages/Catalogue/ViewCatalogue/ViewCatalogue";
 import Register from "../Components/LoginPage/Register";
+import AdminProfile from "../Components/LoginPage/AdminProfile";
 
 function Dom() {
   return (
@@ -36,6 +37,7 @@ function Dom() {
           <Route path="/register" element={<Register />} />
 
           <Route path="/dashboard" element={<AdminDash />} />
+          <Route path="/profile" element={<AdminProfile />} />
           <Route path="/admin/sales/Customer" element={<CustomerList />} />
           <Route
             path="/admin/sales/Customer/createCustomer"

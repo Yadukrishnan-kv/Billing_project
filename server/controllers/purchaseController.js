@@ -1,6 +1,7 @@
 // controllers/purchaseController.js
 const Purchase = require('../models/Purchase');
 const Supplier = require('../models/Supplier');
+const XLSX = require('xlsx');
 
 const createPurchase = async (req, res) => {
   try {
@@ -130,10 +131,57 @@ const deletePurchase = async (req, res) => {
   }
 };
 
+// Export purchases as Excel (.xlsx)
+const exportPurchases = async (req, res) => {
+  try {
+    // Fetch all purchases with supplier populated
+    const purchases = await Purchase.find()
+      .populate('supplier', 'companyName')
+      .sort({ createdAt: -1 });
+
+    // Format data for Excel
+    const worksheetData = purchases.map(p => ({
+      'Bill Number': p.billNumber || p._id?.toString().slice(-6).toUpperCase() || '',
+      'Title': p.title || '',
+      'Supplier': p.supplier?.companyName || '',
+      'Status': p.status || '',
+      'Date': p.date ? new Date(p.date).toLocaleDateString() : '',
+      'Subtotal': p.subtotal ? Number(p.subtotal).toFixed(2) : '0.00',
+      'Discount': p.discountValue ? Number(p.discountValue).toFixed(2) : '0.00',
+      'Tax': p.tax ? Number(p.tax).toFixed(2) : '0.00',
+      'Total': p.total ? Number(p.total).toFixed(2) : '0.00',
+      'Payment Terms': p.paymentTerms || '',
+      'References': p.references || '',
+      'Discount Method': p.discountMethod || '',
+      'Show Quantity As': p.showQuantityAs || '',
+      'Tax Inclusive': p.taxInclusive || '',
+      'Notes': p.notes || '',
+      'Created At': p.createdAt ? new Date(p.createdAt).toLocaleString() : ''
+    }));
+
+    // Create workbook
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Purchases');
+
+    // Generate buffer
+    const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+    // Set headers for file download
+    res.setHeader('Content-Disposition', 'attachment; filename=purchases.xlsx');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.send(buffer);
+  } catch (error) {
+    console.error('Error exporting purchases:', error);
+    res.status(500).json({ success: false, message: 'Failed to export purchases' });
+  }
+};
+
 module.exports = {
   createPurchase,
   getAllPurchases,
   getPurchaseById,
   updatePurchase,
-  deletePurchase
+  deletePurchase,
+  exportPurchases
 };

@@ -163,28 +163,28 @@ function CustomerList() {
   const handleEdit = (id) => navigate(`/admin/sales/Customer/edit/${id}`);
   const handleCreateNew = () => navigate('/admin/sales/Customer/createCustomer');
 
-  const handleExport = () => {
-    const csvContent = [
-      ['ID', 'Customer Name', 'Company', 'Email', 'Phone'],
-      ...sortedCustomers.map((c) => [
-        c.customerId || '',
-        c.customer || '',
-        c.company || '',
-        c.email || '',
-        c.phone || '',
-      ]),
-    ]
-      .map((row) => row.join(','))
-      .join('\n');
+  const handleExport = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${BACKEND_URL}/api/customers/exportCustomers`, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: 'blob' // Important: treat as binary file
+    });
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'customers.csv';
-    a.click();
+    // Create download link
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'customers.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
     window.URL.revokeObjectURL(url);
-  };
+  } catch (err) {
+    console.error('Export failed:', err);
+    alert('Failed to export customers. Please try again.');
+  }
+};
 
   // Pagination
   const totalPages = Math.ceil(sortedCustomers.length / itemsPerPage);

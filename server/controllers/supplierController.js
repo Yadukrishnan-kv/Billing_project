@@ -1,4 +1,5 @@
 const Supplier = require('../models/Supplier');
+const XLSX = require('xlsx');
 
 // Create a new supplier
 const createSupplier = async (req, res) => {
@@ -109,6 +110,54 @@ const deleteSupplier = async (req, res) => {
     });
   }
 };
+// Export suppliers as Excel (.xlsx)
+const exportSuppliers = async (req, res) => {
+  try {
+    // Fetch all suppliers
+    const suppliers = await Supplier.find().sort({ createdAt: -1 });
+
+    // Format data for Excel
+    const worksheetData = suppliers.map(s => ({
+      'ID': s.supplierId || s._id?.toString().slice(-6).toUpperCase() || '',
+      'Name': s.supplierName || '',
+      'Company': s.company || '',
+      'Tax Type': s.taxType || '',
+      'Source of Supply': s.sourceOfSupply || '',
+      'TRN': s.trn || '',
+      'Email': s.email || '',
+      'Secondary Email': s.secondaryEmail || '',
+      'Phone': s.phone || '',
+      'Catalogue': s.catalogue || '',
+      'Currency': s.currency || '',
+      'Tags': s.tags || '',
+      'Payment Terms': s.paymentTerms || '',
+      'Opening Balance': s.openingBalance || '',
+      'Tax Method': s.taxMethod || '',
+      'Address': s.address || '',
+      'City': s.city || '',
+      'State': s.state || '',
+      'ZIP Code': s.zipCode || '',
+      'Country': s.country || '',
+      'Created At': s.createdAt ? new Date(s.createdAt).toLocaleString() : ''
+    }));
+
+    // Create workbook
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Suppliers');
+
+    // Generate buffer
+    const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+    // Set headers for file download
+    res.setHeader('Content-Disposition', 'attachment; filename=suppliers.xlsx');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.send(buffer);
+  } catch (error) {
+    console.error('Error exporting suppliers:', error);
+    res.status(500).json({ success: false, message: 'Failed to export suppliers' });
+  }
+};
 
 module.exports = {
   createSupplier,
@@ -116,4 +165,5 @@ module.exports = {
     getSupplierById,
     updateSupplier,
     deleteSupplier,
+    exportSuppliers
 };

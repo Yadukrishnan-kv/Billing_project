@@ -26,6 +26,16 @@
   border-bottom-color: #667eea;
 }
 
+.invoiceList-btnDownload {
+  color: #4f46e5;
+  background-color: rgba(79, 70, 229, 0.12);
+}
+
+.invoiceList-btnDownload:hover {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(102, 126, 234, 0.15) 100%);
+  transform: scale(1.18);
+}
+
 /* === Header === */
 .invoiceList-headerContainer {
    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

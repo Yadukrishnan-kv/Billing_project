@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice <%= invoice.title %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20mm;
+      line-height: 1.6;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .company-info {
+      text-align: right;
+    }
+    .invoice-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+    .invoice-number {
+      font-size: 16px;
+      color: #555;
+      margin: 5px 0;
+    }
+    .status {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+    .section {
+      margin: 20px 0;
+    }
+    .to-section {
+      display: flex;
+      justify-content: space-between;
+    }
+    .to-box {
+      width: 45%;
+    }
+    .details-box {
+      width: 45%;
+      text-align: right;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .totals {
+      text-align: right;
+      margin-top: 20px;
+    }
+    .amount-in-words {
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    .terms {
+      font-size: 10px;
+      margin-top: 30px;
+      line-height: 1.4;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      color: #888;
+      padding: 10px;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1 class="invoice-title">INVOICE</h1>
+      <div class="invoice-number">#<%= invoice.billNumber || invoice._id.slice(-6).toUpperCase() %></div>
+      <% if (invoice.status === 'Draft') { %>
+        <div class="status">Draft</div>
+      <% } else if (invoice.status === 'Published') { %>
+        <div class="status" style="background: #d4edda; color: #155724;">Paid</div>
+      <% } %>
+    </div>
+    <div class="company-info">
+      <strong>ZYDANS TECHNOLOGIES L.L.C</strong><br>
+      Business Bay<br>
+      Dubai 0000<br>
+      United Arab Emirates<br>
+      TRN: 105185032700003
+    </div>
+  </div>
+
+  <div class="to-section">
+    <div class="to-box">
+      <strong>To:</strong><br>
+      ATTN: <%= invoice.customer?.customer || invoice.customer?.company || 'N/A' %><br>
+      <%= invoice.customer?.billingAddress?.country || '' %><br>
+      TRN: <%= invoice.trn || 'N/A' %><br>
+      Sales Person: <%= invoice.salesPerson || 'N/A' %>
+    </div>
+    <div class="details-box">
+      Date: <%= new Date(invoice.date).toLocaleDateString() %><br>
+      Payment Terms: <%= invoice.paymentTerms || 'Due on Receipt' %><br>
+      Place of Supply: <%= invoice.billingAddress?.city || 'Dubai' %><br>
+      <strong>Total: AED <%= invoice.total ? invoice.total.toFixed(2) : '0.00' %></strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <table>
+      <thead>
+        <tr>
+          <th>S/L</th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Unit</th>
+          <th>Tax</th>
+          <th>Tax Value</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% invoice.items.forEach((item, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= item.itemName %></td>
+            <td><%= item.qty %></td>
+            <td><%= item.price.toFixed(2) %></td>
+            <td><%= item.unit || 'Pcs' %></td>
+            <td><%= item.taxRate || 0 %>%</td>
+            <td><%= (item.qty * item.price * (item.taxRate / 100)).toFixed(2) %></td>
+            <td><%= item.total.toFixed(2) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="totals">
+    <table style="width: auto; margin-left: auto;">
+      <tr>
+        <td>Subtotal</td>
+        <td>AED <%= invoice.subtotal ? invoice.subtotal.toFixed(2) : '0.00' %></td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td>AED <%= invoice.tax ? invoice.tax.toFixed(2) : '0.00' %></td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>AED <%= invoice.total ? invoice.total.toFixed(2) : '0.00' %></strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="amount-in-words">
+  <strong>Amount in Words:</strong><br>
+  <%= amountInWords %>
+</div>
+  <div class="terms">
+    <strong>Terms</strong><br>
+    Bank Details: Account Name : ZYDANS TECHNOLOGIES L.L.C<br>
+    Bank Name : RAK<br>
+    A/c. No. : 0333620685001<br>
+    IBAN Number : AE860400000333620685001<br><br>
+
+    1. The Invoice to be presented for any warranty for 12 months from the date of Invoice.<br>
+    2. The title of the above goods does not pass to purchase until said goods fully paid.<br>
+    3. Dhs.200 labour will be charged if parts for warranty found not faulty.<br>
+    4. 1 year warranty is given for computer systems (software not included).<br>
+    5. All HP, Toshiba, IBM, Dell, Acer, NEC, Canon and Hikvision carry warranty undertaken by the respective agents at their service centers only.<br>
+    6. The above items have been received in good conditions.
+  </div>
+
+  <div class="footer">
+    Generated by ZYDANS TECHNOLOGIES L.L.C | www.zydans.com
+  </div>
+
+</body>
+</html>
+
+<script>
+  // Helper function to convert number to words (simplified)
+  function numberToWords(num) {
+    const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+    const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+    const teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+
+    function convertHundred(n) {
+      let result = '';
+      if (n >= 100) {
+        result += ones[Math.floor(n / 100)] + ' Hundred ';
+        n %= 100;
+      }
+      if (n >= 20) {
+        result += tens[Math.floor(n / 10)] + ' ';
+        n %= 10;
+      } else if (n >= 10) {
+        result += teens[n - 10] + ' ';
+        n = 0;
+      }
+      if (n > 0) {
+        result += ones[n] + ' ';
+      }
+      return result.trim();
+    }
+
+    if (num === 0) return 'Zero';
+
+    let integerPart = Math.floor(num);
+    let decimalPart = Math.round((num - integerPart) * 100);
+
+    let integerWords = '';
+    if (integerPart >= 1000000) {
+      integerWords += convertHundred(Math.floor(integerPart / 1000000)) + ' Million ';
+      integerPart %= 1000000;
+    }
+    if (integerPart >= 1000) {
+      integerWords += convertHundred(Math.floor(integerPart / 1000)) + ' Thousand ';
+      integerPart %= 1000;
+    }
+    if (integerPart > 0) {
+      integerWords += convertHundred(integerPart);
+    }
+
+    let decimalWords = '';
+    if (decimalPart > 0) {
+      decimalWords = ' and ' + convertHundred(decimalPart) + ' Fils';
+    }
+
+    return integerWords + decimalWords + ' only';
+  }
+
+  // Inject into global scope for EJS
+  window.numberToWords = numberToWords;
+</script>

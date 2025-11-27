@@ -84,10 +84,12 @@ const deleteCatalogue = async (req, res) => {
   }
 };
 
+
 module.exports = {
   createCatalogue,
   getAllCatalogues,
   getCatalogueById,
   updateCatalogue,
-  deleteCatalogue
+  deleteCatalogue,
+  
 };

@@ -102,9 +102,37 @@ const changePassword = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+const editProfile = async (req, res) => {
+  try {
+    const { username, email } = req.body;
+
+    // Prevent email duplication
+    if (email) {
+      const existingAdmin = await Admin.findOne({ email });
+      if (existingAdmin && existingAdmin._id.toString() !== req.user._id) {
+        return res.status(400).json({ message: "Email already in use by another account" });
+      }
+    }
+
+    const updatedAdmin = await Admin.findByIdAndUpdate(
+      req.user._id,
+      { username, email },
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    res.json({
+      message: "Profile updated successfully",
+      user: updatedAdmin,
+    });
+  } catch (error) {
+    console.error("Edit profile error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 module.exports = {
   registerAdmin,
   loginAdmin,
   getMe,
-  changePassword
+  changePassword,
+  editProfile
 };

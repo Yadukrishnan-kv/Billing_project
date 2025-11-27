@@ -20,4 +20,7 @@ router.get('/downloadInvoicePDF/:id/download', invoiceController.downloadInvoice
 // GET all invoices (for view page)
 router.get('/getAllInvoices', invoiceController.getAllInvoices);
 
+// Add this with other routes
+router.get('/exportInvoices', invoiceController.exportInvoices);
+router.get('/downloadInvoicePDF/:id/download', invoiceController.downloadInvoicePDF);
 module.exports = router;
